@@ -9,6 +9,7 @@ Ubuntu の日本語デスクトップ環境を作るための Vagrantfile です
 * Ubuntu Japanese Team 推奨パッケージ
 * docker
 * docker-compose
+* docker の `buildpack-deps:trusty` イメージでインストールされるパッケージ
 
 ## 設定
 
