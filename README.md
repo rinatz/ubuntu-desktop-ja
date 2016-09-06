@@ -20,8 +20,14 @@ Ubuntu の日本語デスクトップ環境を作るための Vagrantfile です
 
 メモリを 4096 MB 確保しています。値は適宜変更してください。
 
+## 日本語入力
+
+[UbuntuTips] を参考にしてください。
+
 ## ライセンス
 
 MIT License
 
 Copyright (c) 2016 Kenichiro IDA
+
+[UbuntuTips]: https://wiki.ubuntulinux.jp/UbuntuTips/JapaneseEnvironment/Fcitx
