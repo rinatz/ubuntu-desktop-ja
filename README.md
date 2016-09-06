@@ -24,8 +24,7 @@ Ubuntu の日本語デスクトップ環境を作るための Vagrantfile です
 
 Ubuntu が起動したら右上の歯車のアイコンから
 
-1. `System settings...`
-1. `Language Support`
+`System settings...` > `Language Support`
 
 とたどります。ダイアログが表示されるので `install` を選択し
 言語パッケージをインストールします。
