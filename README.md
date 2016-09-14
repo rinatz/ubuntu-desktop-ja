@@ -33,12 +33,16 @@ Ubuntu が起動したら右上の歯車のアイコンから
 
 ## 日本語入力
 
-[UbuntuTips] を参考にしてください。
+デスクトップ右上のキーボードのアイコンから `設定` を選択し
+`入力メソッド` の項目に
+
+1. キーボード - 日本語 - 日本語（かな 86）
+1. Mozc
+
+という入力メソッドがこの順に並ぶように設定してください。
 
 ## ライセンス
 
 MIT License
 
 Copyright (c) 2016 Kenichiro IDA
-
-[UbuntuTips]: https://wiki.ubuntulinux.jp/UbuntuTips/JapaneseEnvironment/Fcitx
