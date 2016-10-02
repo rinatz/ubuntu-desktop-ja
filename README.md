@@ -43,6 +43,6 @@ Ubuntu が起動したら右上の歯車のアイコンから
 
 ## ライセンス
 
-MIT License
+[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 
 Copyright (c) 2016 Kenichiro IDA
