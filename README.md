@@ -4,12 +4,12 @@ Ubuntu の日本語デスクトップ環境を作るための Vagrantfile です
 
 ## インストールパッケージ
 
-`boxcutter/ubuntu1404-desktop` をベースにして、追加で下記のパッケージをインストールします。
+[boxcutter/ubuntu1404-desktop](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1404-desktop) をベースにして、追加で下記のパッケージをインストールします。
 
-* Ubuntu Japanese Team 推奨パッケージ
-* docker
-* docker-compose
-* docker の `buildpack-deps:trusty` イメージでインストールされるパッケージ
+* [Ubuntu Japanese Team 推奨パッケージ](https://www.ubuntulinux.jp/japanese)
+* [docker](https://www.docker.com/)
+* [docker-compose](https://docs.docker.com/compose/)
+* docker の [buildpack-deps:trusty](https://hub.docker.com/_/buildpack-deps/) イメージでインストールされるパッケージ
 
 ## 変更内容
 
