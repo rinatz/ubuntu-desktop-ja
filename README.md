@@ -11,7 +11,7 @@ Ubuntu の日本語デスクトップ環境を作るための Vagrantfile です
 * docker-compose
 * docker の `buildpack-deps:trusty` イメージでインストールされるパッケージ
 
-## 設定
+## 変更内容
 
 * タイムゾーンを `Asia/Tokyo` に設定
 * 一部の環境で `System program problem detected` というダイアログが出ないようにする（初回起動時は出てしまう）
