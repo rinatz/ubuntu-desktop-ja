@@ -13,7 +13,6 @@ Ubuntu の日本語デスクトップ環境を作るための Vagrantfile です
 
 ## 変更内容
 
-* メモリを 1024 MB に設定
 * タイムゾーンを `Asia/Tokyo` に設定
 * 一部の環境で `System program problem detected` というダイアログが出ないようにする（初回起動時は出てしまう）
 
