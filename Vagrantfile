@@ -68,7 +68,8 @@ Vagrant.configure(2) do |config|
     # Keep the dialog of 'System program problem detected' not appeared
     rm -f /var/crash/*
 
-    echo Asia/Tokyo > /etc/timezone
+    echo "Asia/Tokyo" > /etc/timezone
+    dpkg-reconfigure --frontend noninteractive tzdata
 
     sed -i 's,us.archive.ubuntu.com,ftp.riken.jp/Linux,g' /etc/apt/sources.list
 
