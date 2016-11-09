@@ -64,7 +64,7 @@ Vagrant.configure(2) do |config|
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
-  config.vm.provision "shell", inline: <<-SHELL
+  config.vm.provision "bootstrap", type: "shell", inline: <<-SHELL
     # Keep the dialog of 'System program problem detected' not appeared
     rm -f /var/crash/*
 
@@ -77,17 +77,13 @@ Vagrant.configure(2) do |config|
     wget -q https://www.ubuntulinux.jp/ubuntu-jp-ppa-keyring.gpg -O- | sudo apt-key add -
     wget https://www.ubuntulinux.jp/sources.list.d/trusty.list -O /etc/apt/sources.list.d/ubuntu-ja.list
 
-    apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
-    echo deb https://apt.dockerproject.org/repo ubuntu-trusty main > /etc/apt/sources.list.d/docker.list
+    apt-get update
+    apt-get install -y ubuntu-defaults-ja
+  SHELL
 
+  config.vm.provision "buildpack", type: "shell", run: "never", inline: <<-SHELL
     apt-get update
     apt-get install -y \
-      ubuntu-defaults-ja \
-      apt-transport-https \
-      ca-certificates \
-      linux-image-extra-$(uname -r) \
-      linux-image-extra-virtual \
-      docker-engine \
       autoconf \
       automake \
       bzip2 \
@@ -124,12 +120,14 @@ Vagrant.configure(2) do |config|
       patch \
       xz-utils \
       zlib1g-dev
-
-    usermod -aG docker vagrant
-
-    if [[ ! -e /usr/local/bin/docker-compose ]]; then
-        curl -L https://github.com/docker/compose/releases/download/1.8.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
-        chmod +x /usr/local/bin/docker-compose
-    fi
   SHELL
+
+  config.vm.provision "docker-compose", type: "shell", run: "never", inline: <<-SHELL
+    curl -L https://github.com/docker/compose/releases/download/1.8.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+    chmod +x /usr/local/bin/docker-compose
+  SHELL
+
+  config.vm.provision "portainer", type: "docker", run: "never" do |docker|
+    docker.run "portainer", image:"portainer/portainer", args: "-p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock"
+  end
 end

@@ -4,17 +4,25 @@ Ubuntu の日本語デスクトップ環境を作るための Vagrantfile です
 
 ## インストールパッケージ
 
-[boxcutter/ubuntu1404-desktop](https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1404-desktop) をベースにして、追加で下記のパッケージをインストールします。
+[boxcutter/ubuntu1404-desktop] をベースにして、追加で下記のパッケージをインストールしています。
 
-* [Ubuntu Japanese Team 推奨パッケージ](https://www.ubuntulinux.jp/japanese)
-* [docker](https://www.docker.com/)
-* [docker-compose](https://docs.docker.com/compose/)
-* docker の [buildpack-deps:trusty](https://hub.docker.com/_/buildpack-deps/) イメージでインストールされるパッケージ
+* [Ubuntu Japanese Team 推奨パッケージ]
+* [docker]
+* [docker-compose]
+* [portainer]
+* docker の [buildpack-deps:trusty] イメージでインストールされるパッケージ
+
+[boxcutter/ubuntu1404-desktop]: https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1404-desktop
+[Ubuntu Japanese Team 推奨パッケージ]: https://www.ubuntulinux.jp/japanese
+[docker]: https://www.docker.com/
+[docker-compose]: https://docs.docker.com/compose/
+[portainer]: http://portainer.io/
+[buildpack-deps:trusty]: https://hub.docker.com/_/buildpack-deps/
 
 ## 変更内容
 
 * タイムゾーンを `Asia/Tokyo` に設定
-* 一部の環境で `System program problem detected` というダイアログが出ないようにする（初回起動時は出てしまう）
+* 起動時に `System program problem detected` というダイアログが出ないようにする（初回起動時は出てしまう）
 
 ## 日本語化
 
@@ -40,6 +48,7 @@ Ubuntu が起動したら右上の歯車のアイコンから
 1. Mozc
 
 という入力メソッドがこの順に並ぶように設定してください。
+英語キーボードは削除していいです。
 
 ## ライセンス
 
