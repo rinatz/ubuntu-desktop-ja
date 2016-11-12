@@ -2,28 +2,6 @@
 
 Ubuntu の日本語デスクトップ環境を作るための Vagrantfile です。
 
-## インストールパッケージ
-
-[boxcutter/ubuntu1404-desktop] をベースにして、追加で下記のパッケージをインストールしています。
-
-* [Ubuntu Japanese Team 推奨パッケージ]
-* [docker]
-* [docker-compose]
-* [portainer]
-* docker の [buildpack-deps:trusty] イメージでインストールされるパッケージ
-
-[boxcutter/ubuntu1404-desktop]: https://atlas.hashicorp.com/boxcutter/boxes/ubuntu1404-desktop
-[Ubuntu Japanese Team 推奨パッケージ]: https://www.ubuntulinux.jp/japanese
-[docker]: https://www.docker.com/
-[docker-compose]: https://docs.docker.com/compose/
-[portainer]: http://portainer.io/
-[buildpack-deps:trusty]: https://hub.docker.com/_/buildpack-deps/
-
-## 変更内容
-
-* タイムゾーンを `Asia/Tokyo` に設定
-* 起動時に `System program problem detected` というダイアログが出ないようにする（初回起動時は出てしまう）
-
 ## 日本語化
 
 Ubuntu が起動したら右上の歯車のアイコンから
@@ -49,6 +27,33 @@ Ubuntu が起動したら右上の歯車のアイコンから
 
 という入力メソッドがこの順に並ぶように設定してください。
 英語キーボードは削除していいです。
+
+## インストールパッケージ
+
+Ansible を使って各種パッケージがインストールできるようにしています。
+Playbook には下記を用意しています。
+初回起動時に自動で実行されるのは `bootstrap` だけです。
+追加の Playbook を実行したい場合は
+
+    $ vagrant provision --provision-with <playbook>
+
+を実行してください。
+
+### bootstrap
+
+Ubuntu Japanese Team が推奨するパッケージをインストールします。
+その他下記の変更を行っています。
+
+* タイムゾーンを `Asia/Tokyo` に設定
+* 起動時に `System program problem detected` というダイアログが出ないようにする（初回起動時は出てしまう）
+
+### develop
+
+開発でよく使用されるパッケージと docker をインストールします。
+
+### extra
+
+`develop` でインストールされるパッケージに加えて各種言語のライブラリなどをインストールします。
 
 ## ライセンス
 

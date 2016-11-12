@@ -1,0 +1,23 @@
+---
+
+- name: download archived source
+  get_url:
+    url: https://github.com/google/protobuf/releases/download/v{{ protobuf_version }}/protobuf-{{ protobuf_version }}.tar.gz
+    dest: /tmp
+
+- name: unarchive source
+  become: yes
+  unarchive:
+    src: /tmp/protobuf-{{ protobuf_version }}.tar.gz
+    dest: /usr/local/src
+    remote_src: yes
+
+- name: compile and install
+  become: yes
+  shell: "{{ item }}"
+  args:
+    chdir: /usr/local/src/protobuf-{{ protobuf_version }}
+  with_items:
+    - ./configure
+    - make
+    - make install

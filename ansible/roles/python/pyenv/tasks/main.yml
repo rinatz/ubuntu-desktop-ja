@@ -1,0 +1,21 @@
+---
+
+- name: download pyenv-installer
+  get_url:
+    url: https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer
+    dest: /tmp/pyenv-installer
+    mode: 0755
+    sha256sum: 9509348b828f0564358fff456f7f693dd9ace351dc3f240854d7685ad8a8e1dd
+    force: yes
+
+- name: install pyenv
+  shell: /tmp/pyenv-installer
+
+- name: enable pyenv
+  lineinfile:
+    dest: ~/.bashrc
+    line: |
+      # pyenv
+      export PATH="~/.pyenv/bin:$PATH"
+      eval "$(pyenv init -)"
+      eval "$(pyenv virtualenv-init -)"

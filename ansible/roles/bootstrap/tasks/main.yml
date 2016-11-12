@@ -1,0 +1,46 @@
+---
+
+- name: remove crash report files
+  file:
+    name: /var/crash/*
+    state: absent
+
+- name: set timezone to Asina/Tokyo
+  become: yes
+  timezone:
+    name: Asia/Tokyo
+
+- name: dpkg-reconfigure tzdata
+  become: yes
+  shell: dpkg-reconfigure --frontend noninteractive tzdata
+
+- name: change ubuntu apt repository
+  become: yes
+  lineinfile:
+    regexp: '^(.*)us.archive.ubuntu.com(.*)$'
+    line: '\1ftp.riken.jp/Linux\2'
+    dest: /etc/apt/sources.list
+    backrefs: yes
+    state: present
+
+- name: add apt keys
+  become: yes
+  apt_key:
+    url: "{{ item }}"
+    state: present
+  with_items:
+    - https://www.ubuntulinux.jp/ubuntu-ja-archive-keyring.gpg
+    - https://www.ubuntulinux.jp/ubuntu-jp-ppa-keyring.gpg
+
+- name: add apt repository
+  become: yes
+  get_url:
+    url: https://www.ubuntulinux.jp/sources.list.d/trusty.list
+    dest: /etc/apt/sources.list.d/ubuntu-ja.list
+
+- name: install ubuntu-defaults-ja
+  become: yes
+  apt:
+    name: ubuntu-defaults-ja
+    state: present
+    update_cache: yes

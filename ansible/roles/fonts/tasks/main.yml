@@ -1,0 +1,7 @@
+---
+
+- name: install inconsolata
+  become: yes
+  apt:
+    name: fonts-inconsolata
+    state: present

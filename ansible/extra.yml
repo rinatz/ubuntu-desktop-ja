@@ -1,0 +1,11 @@
+---
+
+- hosts: all
+  roles:
+    - fonts
+    - java
+    - python/pyenv
+    # - cpp
+    # - cpp/gtest
+    # - cpp/protobuf
+    # - docker/portainer

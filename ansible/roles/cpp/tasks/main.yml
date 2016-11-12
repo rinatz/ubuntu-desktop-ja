@@ -1,0 +1,15 @@
+---
+
+- name: install c++ tools
+  become: yes
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - libboost1.55-all-dev
+    - ccache
+    - cmake
+    - gdb
+    - ninja-build
+    - valgrind

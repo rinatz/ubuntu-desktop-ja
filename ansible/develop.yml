@@ -1,0 +1,9 @@
+---
+
+- hosts: all
+  roles:
+    - buildpack
+    - docker
+    - python
+    - python/docker-compose
+    - python/docker-py

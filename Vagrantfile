@@ -5,7 +5,7 @@
 # configures the configuration version (we support older styles for
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
-Vagrant.configure(2) do |config|
+Vagrant.configure("2") do |config|
   # The most common configuration options are documented and commented below.
   # For a complete reference, please see the online documentation at
   # https://docs.vagrantup.com.
@@ -64,70 +64,20 @@ Vagrant.configure(2) do |config|
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
-  config.vm.provision "bootstrap", type: "shell", inline: <<-SHELL
-    # Keep the dialog of 'System program problem detected' not appeared
-    rm -f /var/crash/*
+  # config.vm.provision "shell", inline: <<-SHELL
+  #   apt-get update
+  #   apt-get install -y apache2
+  # SHELL
 
-    echo "Asia/Tokyo" > /etc/timezone
-    dpkg-reconfigure --frontend noninteractive tzdata
+  config.vm.provision "bootstrap", type: "ansible_local" do |ansible|
+    ansible.playbook = "ansible/site.yml"
+  end
 
-    sed -i 's,us.archive.ubuntu.com,ftp.riken.jp/Linux,g' /etc/apt/sources.list
+  config.vm.provision "develop", type: "ansible_local", run: "never" do |ansible|
+    ansible.playbook = "ansible/develop.yml"
+  end
 
-    wget -q https://www.ubuntulinux.jp/ubuntu-ja-archive-keyring.gpg -O- | sudo apt-key add -
-    wget -q https://www.ubuntulinux.jp/ubuntu-jp-ppa-keyring.gpg -O- | sudo apt-key add -
-    wget https://www.ubuntulinux.jp/sources.list.d/trusty.list -O /etc/apt/sources.list.d/ubuntu-ja.list
-
-    apt-get update
-    apt-get install -y ubuntu-defaults-ja
-  SHELL
-
-  config.vm.provision "buildpack", type: "shell", run: "never", inline: <<-SHELL
-    apt-get update
-    apt-get install -y \
-      autoconf \
-      automake \
-      bzip2 \
-      file \
-      g++ \
-      gcc \
-      imagemagick \
-      libbz2-dev \
-      libc6-dev \
-      libcurl4-openssl-dev \
-      libdb-dev \
-      libevent-dev \
-      libffi-dev \
-      libgeoip-dev \
-      libglib2.0-dev \
-      libjpeg-dev \
-      libkrb5-dev \
-      liblzma-dev \
-      libmagickcore-dev \
-      libmagickwand-dev \
-      libmysqlclient-dev \
-      libncurses-dev \
-      libpng-dev \
-      libpq-dev \
-      libreadline-dev \
-      libsqlite3-dev \
-      libssl-dev \
-      libtool \
-      libwebp-dev \
-      libxml2-dev \
-      libxslt-dev \
-      libyaml-dev \
-      make \
-      patch \
-      xz-utils \
-      zlib1g-dev
-  SHELL
-
-  config.vm.provision "docker-compose", type: "shell", run: "never", inline: <<-SHELL
-    curl -L https://github.com/docker/compose/releases/download/1.8.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
-    chmod +x /usr/local/bin/docker-compose
-  SHELL
-
-  config.vm.provision "portainer", type: "docker", run: "never" do |docker|
-    docker.run "portainer", image:"portainer/portainer", args: "-p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock"
+  config.vm.provision "extra", type: "ansible_local", run: "never" do |ansible|
+    ansible.playbook = "ansible/extra.yml"
   end
 end
