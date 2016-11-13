@@ -8,3 +8,4 @@
   with_items:
     - python-dev
     - python-pip
+    - python-virtualenv

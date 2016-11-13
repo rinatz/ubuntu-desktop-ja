@@ -4,6 +4,8 @@
   get_url:
     url: http://fallabs.com/kyotocabinet/pkg/kyotocabinet-{{ kc_version }}.tar.gz
     dest: /tmp
+    sha256sum: 812a2d3f29c351db4c6f1ff29d94d7135f9e601d7cc1872ec1d7eed381d0d23c
+    force: yes
 
 - name: unarchive source
   become: yes

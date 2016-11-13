@@ -4,6 +4,8 @@
   get_url:
     url: https://github.com/google/protobuf/releases/download/v{{ protobuf_version }}/protobuf-{{ protobuf_version }}.tar.gz
     dest: /tmp
+    sha256sum: cd087148a8651aaaf49e6e47df9491f3cd4cc58d3add0ac7d7b834ad808f4f13
+    force: yes
 
 - name: unarchive source
   become: yes

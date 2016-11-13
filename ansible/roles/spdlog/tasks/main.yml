@@ -4,6 +4,8 @@
   get_url:
     url: https://github.com/gabime/spdlog/archive/v{{ spdlog_version }}.tar.gz
     dest: /tmp
+    sha256sum: bbbe5a855c8b309621352921d650449eb2f741d35d55ec50fb4d8122ddfb8f01
+    force: yes
 
 - name: unarchive source
   become: yes
