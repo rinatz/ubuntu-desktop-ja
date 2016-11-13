@@ -2,8 +2,12 @@
 
 - hosts: all
   roles:
+    - cpp
     - fonts
     - gtest
     - java
+    - kyotocabinet
     - protobuf
     - pyenv
+    - python
+    - spdlog

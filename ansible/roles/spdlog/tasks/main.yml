@@ -8,15 +8,11 @@
 - name: unarchive source
   become: yes
   unarchive:
-    src: /tmp/spdlog-{{ spdlog_version }}
+    src: /tmp/spdlog-{{ spdlog_version }}.tar.gz
     dest: /usr/local/src
 
-- name: compile and install
+- name: install
   become: yes
-  shell: "{{ item }}"
-  args:
-    chdir: /usr/local/src/spdlog-{{ spdlog_version }}
-  with_items:
-    - cmake -G Ninja -DCMAKE_BUILD_TYPE=Release .
-    - ninja
-    - ninja install
+  copy:
+    src: /usr/local/src/spdlog-{{ spdlog_version }}/include/spdlog
+    dest: /usr/local/include/
