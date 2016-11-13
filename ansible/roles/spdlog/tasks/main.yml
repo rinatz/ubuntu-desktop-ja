@@ -1,0 +1,22 @@
+---
+
+- name: download archived source
+  get_url:
+    url: https://github.com/gabime/spdlog/archive/v{{ spdlog_version }}.tar.gz
+    dest: /tmp
+
+- name: unarchive source
+  become: yes
+  unarchive:
+    src: /tmp/spdlog-{{ spdlog_version }}
+    dest: /usr/local/src
+
+- name: compile and install
+  become: yes
+  shell: "{{ item }}"
+  args:
+    chdir: /usr/local/src/spdlog-{{ spdlog_version }}
+  with_items:
+    - cmake -G Ninja -DCMAKE_BUILD_TYPE=Release .
+    - ninja
+    - ninja install

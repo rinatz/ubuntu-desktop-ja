@@ -1,0 +1,22 @@
+---
+
+- name: download archived source
+  get_url:
+    url: http://fallabs.com/kyotocabinet/pkg/kyotocabinet-{{ kc_version }}.tar.gz
+    dest: /tmp
+
+- name: unarchive source
+  become: yes
+  unarchive:
+    src: /tmp/kyotocabinet-{{ kc_version }}.tar.gz
+    dest: /usr/local/src
+
+- name: compile and install
+  become: yes
+  shell: "{{ item }}"
+  args:
+    chdir: /usr/local/src/kyotocabinet-{{ kc_version }}
+  with_items:
+    - ./configure
+    - make
+    - make install
