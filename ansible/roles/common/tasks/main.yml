@@ -5,7 +5,7 @@
     name: /var/crash/*
     state: absent
 
-- name: set timezone to Asina/Tokyo
+- name: set timezone to Asia/Tokyo
   become: yes
   timezone:
     name: Asia/Tokyo
