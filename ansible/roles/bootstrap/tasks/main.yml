@@ -23,7 +23,7 @@
     backrefs: yes
     state: present
 
-- name: add apt keys
+- name: add apt key
   become: yes
   apt_key:
     url: "{{ item }}"
@@ -38,7 +38,7 @@
     url: https://www.ubuntulinux.jp/sources.list.d/trusty.list
     dest: /etc/apt/sources.list.d/ubuntu-ja.list
 
-- name: install ubuntu-defaults-ja
+- name: install packages
   become: yes
   apt:
     name: ubuntu-defaults-ja
