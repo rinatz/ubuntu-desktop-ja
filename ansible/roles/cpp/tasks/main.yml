@@ -13,3 +13,15 @@
     - gdb
     - ninja-build
     - valgrind
+
+- name: enable ccache
+  become: yes
+  file:
+    src: /usr/bin/ccache
+    dest: /usr/local/bin/{{ item }}
+    state: link
+  with_items:
+    - cc
+    - c++
+    - gcc
+    - g++
