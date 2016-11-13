@@ -5,6 +5,8 @@
     - buildpack
     - docker
     - docker-compose
-    - docker-py
     - dotfiles
+    - fonts
+    - java
     - portainer
+    - pyenv
