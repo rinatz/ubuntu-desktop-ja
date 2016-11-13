@@ -4,6 +4,6 @@
   roles:
     - buildpack
     - docker
-    - python
     - docker-compose
     - docker-py
+    - portainer

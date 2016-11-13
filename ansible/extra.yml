@@ -3,9 +3,7 @@
 - hosts: all
   roles:
     - fonts
-    - java
-    - pyenv
-    - cpp
     - gtest
+    - java
     - protobuf
-    - portainer
+    - pyenv
