@@ -73,11 +73,11 @@ Vagrant.configure("2") do |config|
     ansible.playbook = "ansible/site.yml"
   end
 
-  config.vm.provision "develop", type: "ansible_local", run: "never" do |ansible|
-    ansible.playbook = "ansible/develop.yml"
-  end
-
-  config.vm.provision "extra", type: "ansible_local", run: "never" do |ansible|
-    ansible.playbook = "ansible/extra.yml"
-  end
+  # config.vm.provision "develop", type: "ansible_local", run: "never" do |ansible|
+  #   ansible.playbook = "ansible/develop.yml"
+  # end
+  #
+  # config.vm.provision "extra", type: "ansible_local", run: "never" do |ansible|
+  #   ansible.playbook = "ansible/extra.yml"
+  # end
 end
