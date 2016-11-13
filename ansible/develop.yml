@@ -6,4 +6,5 @@
     - docker
     - docker-compose
     - docker-py
+    - dotfiles
     - portainer

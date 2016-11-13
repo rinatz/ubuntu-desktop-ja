@@ -1,0 +1,10 @@
+---
+
+- name: add dotfiles
+  copy:
+    src: "{{ item }}"
+    dest: ~/
+    mode: 0644
+  with_items:
+    - .vimrc
+    - .inputrc
