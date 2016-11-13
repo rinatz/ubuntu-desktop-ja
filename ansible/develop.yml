@@ -5,5 +5,5 @@
     - buildpack
     - docker
     - python
-    - python/docker-compose
-    - python/docker-py
+    - docker-compose
+    - docker-py
