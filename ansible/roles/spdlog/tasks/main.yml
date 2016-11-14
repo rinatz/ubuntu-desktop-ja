@@ -12,6 +12,7 @@
   unarchive:
     src: /tmp/spdlog-{{ spdlog_version }}.tar.gz
     dest: /usr/local/src
+    remote_src: yes
 
 - name: install
   become: yes

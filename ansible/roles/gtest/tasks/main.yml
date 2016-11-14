@@ -12,6 +12,7 @@
   unarchive:
     src: /tmp/googletest-release-{{ gtest_version }}.tar.gz
     dest: /usr/local/src
+    remote_src: yes
 
 - name: compile and install
   become: yes
