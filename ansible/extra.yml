@@ -2,6 +2,7 @@
 
 - hosts: all
   roles:
+    - dlang
     - gtest
     - java
     - jq
