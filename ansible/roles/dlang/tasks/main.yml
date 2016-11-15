@@ -1,0 +1,23 @@
+---
+
+- name: download repository url list
+  get_url:
+    url: http://master.dl.sourceforge.net/project/d-apt/files/d-apt.list
+    dest: /etc/apt/sources.list.d/d-apt.list
+
+- name: install apt keyring
+  apt:
+    name: d-apt-keyring
+    state: present
+    update_cache: yes
+    allow_unauthenticated: yes
+
+- name: install packages
+  apt:
+    name: "{{ item }}"
+    update_cache: yes
+  with_items:
+    - dmd-bin
+    - libphobos2-{{ dmd_version }}
+    - libphobos2-dev
+    - dub

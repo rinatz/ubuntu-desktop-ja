@@ -3,5 +3,7 @@
 - hosts: all
   roles:
     - buildpack
+    - fonts
     - docker
     - dotfiles
+    - pyenv
