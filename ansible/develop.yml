@@ -4,9 +4,4 @@
   roles:
     - buildpack
     - docker
-    - docker-compose
     - dotfiles
-    - fonts
-    - java
-    - portainer
-    - pyenv

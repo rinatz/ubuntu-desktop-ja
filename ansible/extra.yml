@@ -3,6 +3,8 @@
 - hosts: all
   roles:
     - gtest
+    - java
+    - jq
     - kyotocabinet
     - protobuf
     - spdlog
