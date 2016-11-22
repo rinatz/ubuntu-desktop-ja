@@ -16,12 +16,10 @@
 
 - name: change ubuntu apt repository
   become: yes
-  lineinfile:
-    regexp: '^(.*)us.archive.ubuntu.com(.*)$'
-    line: '\1ftp.riken.jp/Linux\2'
+  replace:
     dest: /etc/apt/sources.list
-    backrefs: yes
-    state: present
+    regexp: '^(.*)us.archive.ubuntu.com(.*)$'
+    replace: '\1jp.archive.ubuntu.com\2'
 
 - name: add apt key
   become: yes
