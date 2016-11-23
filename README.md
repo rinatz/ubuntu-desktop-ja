@@ -30,15 +30,6 @@ Ubuntu が起動したら右上の歯車のアイコンから
 
 ## インストールパッケージ
 
-Ansible を使って各種パッケージがインストールできるようにしています。
-Playbook には下記を用意しています。
-初回起動時に自動で実行されるのは `bootstrap` だけです。
-追加の Playbook を実行したい場合は、 `Vagrantfile` の `provision` の項目のコメントを外して
-
-    $ vagrant provision --provision-with <playbook>
-
-を実行してください。
-
 ### bootstrap
 
 Ubuntu Japanese Team が推奨するパッケージをインストールします。

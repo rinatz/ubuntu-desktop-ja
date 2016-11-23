@@ -12,6 +12,7 @@
     - cmake
     - gdb
     - ninja-build
+    - stow
     - valgrind
 
 - name: enable ccache

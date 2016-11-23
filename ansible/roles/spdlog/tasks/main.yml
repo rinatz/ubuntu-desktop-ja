@@ -14,8 +14,20 @@
     dest: /usr/local/src
     remote_src: yes
 
+- name: create the directory
+  become: yes
+  file:
+    path: /usr/local/stow/spdlog-{{ spdlog_version }}
+    state: directory
+
 - name: install
   become: yes
   copy:
-    src: /usr/local/src/spdlog-{{ spdlog_version }}/include/spdlog
-    dest: /usr/local/include/
+    src: /usr/local/src/spdlog-{{ spdlog_version }}/include
+    dest: /usr/local/stow/spdlog-{{ spdlog_version }}
+
+- name: stow
+  become: yes
+  shell: stow spdlog-{{ spdlog_version }}
+  args:
+    chdir: /usr/local/stow

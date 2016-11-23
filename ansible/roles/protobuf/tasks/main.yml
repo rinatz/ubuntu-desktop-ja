@@ -20,6 +20,12 @@
   args:
     chdir: /usr/local/src/protobuf-{{ protobuf_version }}
   with_items:
-    - ./configure
+    - ./configure --prefix=/usr/local/stow/protobuf-{{ protobuf_version }}
     - make
     - make install
+
+- name: stow
+  become: yes
+  shell: stow protobuf-{{ protobuf_version }}
+  args:
+    chdir: /usr/local/stow

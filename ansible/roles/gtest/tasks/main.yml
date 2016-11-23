@@ -20,6 +20,12 @@
   args:
     chdir: /usr/local/src/googletest-release-{{ gtest_version }}
   with_items:
-    - cmake -G Ninja -DCMAKE_BUILD_TYPE=Release .
+    - cmake -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local/stow/gtest-{{ gtest_version }} .
     - ninja
     - ninja install
+
+- name: stow
+  become: yes
+  shell: stow gtest-{{ gtest_version }}
+  args:
+    chdir: /usr/local/stow

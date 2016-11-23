@@ -1,11 +1,13 @@
 ---
 
 - name: download repository url list
+  become: yes
   get_url:
     url: http://master.dl.sourceforge.net/project/d-apt/files/d-apt.list
     dest: /etc/apt/sources.list.d/d-apt.list
 
 - name: install apt keyring
+  become: yes
   apt:
     name: d-apt-keyring
     state: present
@@ -13,6 +15,7 @@
     allow_unauthenticated: yes
 
 - name: install packages
+  become: yes
   apt:
     name: "{{ item }}"
     update_cache: yes

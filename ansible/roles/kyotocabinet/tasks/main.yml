@@ -20,6 +20,12 @@
   args:
     chdir: /usr/local/src/kyotocabinet-{{ kc_version }}
   with_items:
-    - ./configure
+    - ./configure --prefix=/usr/local/stow/kyotocabinet-{{ kc_version }}
     - make
     - make install
+
+- name: stow
+  become: yes
+  shell: stow kyotocabinet-{{ kc_version }}
+  args:
+    chdir: /usr/local/stow
