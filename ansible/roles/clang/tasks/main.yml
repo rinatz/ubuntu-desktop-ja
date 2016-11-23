@@ -1,0 +1,25 @@
+---
+
+- name: download archived file
+  get_url:
+    url: http://llvm.org/releases/3.9.0/clang+llvm-{{ clang_version }}-x86_64-linux-gnu-ubuntu-14.04.tar.xz
+    dest: /tmp
+    sha256sum: 6eba6f834424086a40ca95e7b013765d8bcbfdce193b5ab7da42e2ff5beadf3e
+
+- name: unarchive the file
+  become: yes
+  unarchive:
+    src: /tmp/clang+llvm-{{ clang_version }}-x86_64-linux-gnu-ubuntu-14.04.tar.xz
+    dest: /usr/local/stow
+
+- name: rename the directory
+  become: yes
+  shell: mv clang+llvm-{{ clang_version }}-x86_64-linux-gnu-ubuntu-14.04 clang-{{ clang_version }}
+  args:
+    chdir: /usr/local/stow
+
+- name: stow
+  become: yes
+  shell: stow clang-{{ clang_version }}
+  args:
+    chdir: /usr/local/stow
