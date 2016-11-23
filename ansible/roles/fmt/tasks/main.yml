@@ -1,0 +1,28 @@
+---
+
+- name: download archived source
+  get_url:
+    url: https://github.com/fmtlib/fmt/archive/{{ fmt_version }}.tar.gz
+    dest: /tmp
+
+- name: unarchive source
+  become: yes
+  unarchive:
+    src: /tmp/fmt-{{ fmt_version }}.tar.gz
+    dest: /usr/local/src
+
+- name: compile and install
+  become: yes
+  shell: "{{ item }}"
+  args:
+    chdir: /usr/local/src/fmt-{{ fmt_version }}
+  with_items:
+    - cmake -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local/stow/fmt-{{ fmt_version }} .
+    - ninja
+    - ninja install
+
+- name: stow
+  become: yes
+  shell: stow fmt-{{ fmt_version }}
+  args:
+    chdir: /usr/local/stow

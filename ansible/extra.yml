@@ -4,6 +4,7 @@
   roles:
     - clang
     - dlang
+    - fmt
     - gtest
     - java
     - jq
