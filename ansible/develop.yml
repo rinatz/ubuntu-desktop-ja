@@ -2,9 +2,9 @@
 
 - hosts: all
   roles:
-    # - buildpack
-    # - fonts
-    # - docker
+    - buildpack
+    - fonts
+    - docker
     - docker-compose
-    # - dotfiles
-    # - pyenv
+    - dotfiles
+    - pyenv
