@@ -53,7 +53,7 @@ Ubuntu が起動したら右上の歯車のアイコンから
 
 プロビジョニング時に下記のパッケージを [Ansible] を使用してインストールするようにしています。
 インストールが不要のライブラリがあれば、好みに合わせて使用する
-PlayBook や role を編集しても構いません。
+Playbook や role を編集しても構いません。
 
 [Ansible]: https://www.ansible.com/
 
