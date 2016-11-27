@@ -2,6 +2,27 @@
 
 Ubuntu の日本語デスクトップ環境を作るための Vagrantfile です。
 
+## 必要なもの
+
+* [Vagrant]
+* [VirtualBox]
+
+[Vagrant]: https://www.vagrantup.com/
+[VirtualBox]: https://www.virtualbox.org/
+
+## 使い方
+
+リポジトリをクローンした後、 `Vagrantfile` と `ansible` ディレクトリを
+適当なところ（`$HOME` など）においてください。
+
+    $ git clone https://github.com/rinatz/ubuntu-desktop-ja
+    $ cp -rp ubuntu-desktop-ja/{Vagrantfile,ansible} $HOME
+
+`Vagrantfile` の置かれたところで `vagrant up` と打てばプロビジョニングが始まります。
+
+    $ cd $HOME
+    $ vagrant up
+
 ## 日本語化
 
 Ubuntu が起動したら右上の歯車のアイコンから
@@ -29,6 +50,8 @@ Ubuntu が起動したら右上の歯車のアイコンから
 英語キーボードは削除していいです。
 
 ## インストールパッケージ
+
+プロビジョニング時に下記のパッケージをインストールするようにしています。
 
 ### bootstrap
 
