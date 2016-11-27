@@ -1,6 +1,6 @@
 # ubuntu-desktop-ja
 
-Ubuntu の日本語デスクトップ環境を作るための Vagrantfile です。
+Ubuntu 14.04 の日本語デスクトップ環境を作るための Vagrantfile です。
 
 ## 必要なもの
 
