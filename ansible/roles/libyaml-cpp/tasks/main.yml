@@ -1,0 +1,8 @@
+---
+
+- name: install libyaml-cpp
+  become: yes
+  apt:
+    name: libyaml-cpp-dev
+    state: present
+    update_cache: yes

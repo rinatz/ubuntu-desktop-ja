@@ -1,0 +1,8 @@
+---
+
+- name: install libsnappy
+  become: yes
+  apt:
+    name: libsnappy-dev
+    state: present
+    update_cache: yes

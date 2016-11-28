@@ -1,0 +1,8 @@
+---
+
+- name: install liblz4
+  become: yes
+  apt:
+    name: liblz4-dev
+    state: present
+    update_cache: yes

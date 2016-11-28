@@ -1,0 +1,8 @@
+---
+
+- name: install gflags
+  become: yes
+  apt:
+    name: libgflags-dev
+    state: present
+    update_cache: yes

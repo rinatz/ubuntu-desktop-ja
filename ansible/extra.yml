@@ -8,10 +8,17 @@
     - czmq
     - dlang
     - fmt
+    - gflags
     - gtest
     - java
     - jq
     - kyotocabinet
+    - liblz4
+    - liblzo2
+    - libsnappy
+    - libyaml-cpp
+    - libzip
+    - nkf
     - picojson
     - protobuf
     - spdlog

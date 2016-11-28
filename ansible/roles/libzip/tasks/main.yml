@@ -1,0 +1,8 @@
+---
+
+- name: install libzip
+  become: yes
+  apt:
+    name: libzip-dev
+    state: present
+    update_cache: yes

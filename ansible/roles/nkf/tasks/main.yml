@@ -1,0 +1,8 @@
+---
+
+- name: install nkf
+  become: yes
+  apt:
+    name: nkf
+    state: present
+    update_cache: yes
