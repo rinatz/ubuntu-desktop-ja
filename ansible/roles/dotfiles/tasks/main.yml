@@ -6,5 +6,6 @@
     dest: ~/
     mode: 0644
   with_items:
+    - .bashrc
     - .inputrc
     - .vimrc
