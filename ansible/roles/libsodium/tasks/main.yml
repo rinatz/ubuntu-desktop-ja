@@ -1,0 +1,28 @@
+---
+
+- name: download archived source
+  get_url:
+    url: https://github.com/jedisct1/libsodium/releases/download/{{ sodium_version }}/libsodium-{{ sodium_version }}.tar.gz
+    dest: /tmp
+
+- name: unarchive source
+  become: yes
+  unarchive:
+    src: /tmp/libsodium-{{ sodium_version }}.tar.gz
+    dest: /usr/local/src
+
+- name: compile and install
+  become: yes
+  shell: "{{ item }}"
+  args:
+    chdir: /usr/local/src/libsodium-{{ sodium_version }}
+  with_items:
+    - ./configure --prefix=/usr/local/stow/libsodium-{{ sodium_version }}
+    - make
+    - make install
+
+- name: stow
+  become: yes
+  shell: stow libsodium-{{ sodium_version }}
+  args:
+    chdir: /usr/local/stow

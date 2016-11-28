@@ -4,6 +4,7 @@
   roles:
     - clang
     - cppitertools
+    - czmq
     - dlang
     - fmt
     - gtest
@@ -12,3 +13,4 @@
     - kyotocabinet
     - protobuf
     - spdlog
+    - zeromq
