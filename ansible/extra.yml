@@ -16,10 +16,10 @@
     - liblz4
     - liblzo2
     - libsnappy
-    - libyaml-cpp
     - libzip
     - nkf
     - picojson
     - protobuf
     - spdlog
+    - yaml-cpp
     - zeromq

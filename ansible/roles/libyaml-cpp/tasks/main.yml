@@ -1,6 +1,6 @@
 ---
 
-- name: install libyaml-cpp
+- name: install yaml-cpp
   become: yes
   apt:
     name: libyaml-cpp-dev
