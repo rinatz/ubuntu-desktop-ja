@@ -1,0 +1,8 @@
+---
+
+- name: install cifs-utils
+  become: yes
+  apt:
+    name: cifs-utils
+    state: present
+    update_cache: yes

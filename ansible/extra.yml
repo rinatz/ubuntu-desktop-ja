@@ -2,6 +2,7 @@
 
 - hosts: all
   roles:
+    - cifs-utils
     - clang
     - cppitertools
     - czmq
@@ -11,6 +12,7 @@
     - java
     - jq
     - kyotocabinet
+    - picojson
     - protobuf
     - spdlog
     - zeromq

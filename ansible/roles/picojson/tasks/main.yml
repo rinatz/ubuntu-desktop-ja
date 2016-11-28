@@ -1,0 +1,30 @@
+---
+
+- name: download archived source
+  get_url:
+    url: https://github.com/kazuho/picojson/archive/v{{ picojson_version }}.tar.gz
+    dest: /tmp
+
+- name: unarchive source
+  become: yes
+  unarchive:
+    src: /tmp/picojson-{{ picojson_version }}.tar.gz
+    dest: /usr/local/src
+
+- name: create the directory
+  become: yes
+  file:
+    path: /usr/local/stow/picojson-{{ picojson_version }}/include/picojson
+    state: directory
+
+- name: copy files
+  become: yes
+  copy:
+    src: /usr/local/src/picojson-{{ picojson_version }}/picojson.h
+    dest: /usr/local/stow/picojson-{{ picojson_version }}/include/picojson
+
+- name: stow
+  become: yes
+  shell: stow picojson-{{ picojson_version }}
+  args:
+    chdir: /usr/local/stow
