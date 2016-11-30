@@ -12,6 +12,7 @@
     - cmake
     - gdb
     - ninja-build
+    - qt5-qmake
     - stow
     - valgrind
 
@@ -26,3 +27,10 @@
     - c++
     - gcc
     - g++
+
+- name: enable qmake
+  become: yes
+  file:
+    src: /usr/lib/x86_64-linux-gnu/qt5/bin/qmake
+    dest: /usr/local/bin/qmake
+    state: link
