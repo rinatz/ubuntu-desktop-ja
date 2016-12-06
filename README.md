@@ -23,14 +23,14 @@ Ubuntu 14.04 の日本語デスクトップ環境を作るための Vagrantfile 
 
 ### プライベートネットワーク
 
-プライベートネットワークとして IP アドレス `192.168.56.101` を割り当てています。
-別の IP アドレスにしたい場合は `Vagrantfile` の
+プライベートネットワークとして IP アドレスを DHCP で割り当てています。
+固定 IP アドレスにしたい場合は `Vagrantfile` の
 
 ```ruby
-config.vm.network "private_network", ip: "192.168.56.101"
+config.vm.network "private_network", type: "dhcp"
 ```
 
-の箇所を適宜変更してください。
+の箇所を変更してください。
 
 ### CPU・メモリ
 
