@@ -20,7 +20,6 @@
     - nkf
     - picojson
     - protobuf
-    - qmake
     - spdlog
     - yaml-cpp
     - zeromq
