@@ -24,3 +24,8 @@
     - linux-image-extra-4.4.0-31-generic
     - linux-image-extra-virtual
     - docker-engine
+
+- name: add vagrant user to docker group
+  become: yes
+  shell: usermod -aG docker vagrant
+  when: ansible_user_id == "vagrant"
