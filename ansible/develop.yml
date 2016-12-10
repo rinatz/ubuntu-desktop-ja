@@ -7,4 +7,5 @@
     - docker
     - docker-compose
     - dotfiles
+    - portainer
     - pyenv
