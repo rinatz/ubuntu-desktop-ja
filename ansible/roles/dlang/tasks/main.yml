@@ -6,13 +6,11 @@
     url: http://master.dl.sourceforge.net/project/d-apt/files/d-apt.list
     dest: /etc/apt/sources.list.d/d-apt.list
 
-- name: install apt keyring
+- name: add apt key
   become: yes
-  apt:
-    name: d-apt-keyring
+  apt_key:
+    url: https://dlang.org/d-keyring.gpg
     state: present
-    update_cache: yes
-    allow_unauthenticated: yes
 
 - name: install packages
   become: yes
