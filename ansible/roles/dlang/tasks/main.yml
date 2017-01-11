@@ -6,11 +6,18 @@
     url: http://master.dl.sourceforge.net/project/d-apt/files/d-apt.list
     dest: /etc/apt/sources.list.d/d-apt.list
 
+#
+# apt_key module requires python >= 2.7.9 but it uses older version
+#
+# - name: add apt key
+#   become: yes
+#   apt_key:
+#     url: https://dlang.org/d-keyring.gpg
+#     state: present
+
 - name: add apt key
   become: yes
-  apt_key:
-    url: https://dlang.org/d-keyring.gpg
-    state: present
+  shell: curl -s https://dlang.org/d-keyring.gpg | apt-key add -
 
 - name: install packages
   become: yes
