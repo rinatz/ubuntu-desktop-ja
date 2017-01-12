@@ -1,15 +1,23 @@
 ---
 
+- name: ensure zeromq installed
+  stat:
+    path: /usr/local/stow/zeromq-{{ zmq_version }}
+  register: install_dir
+
 - name: download archived source
   get_url:
     url: https://github.com/zeromq/zeromq4-1/releases/download/v{{ zmq_version }}/zeromq-{{ zmq_version }}.tar.gz
     dest: /tmp
+  when: not install_dir.stat.exists
 
 - name: unarchive source
   become: yes
   unarchive:
     src: /tmp/zeromq-{{ zmq_version }}.tar.gz
     dest: /usr/local/src
+    remote_src: yes
+  when: not install_dir.stat.exists
 
 - name: compile and install
   become: yes
@@ -20,9 +28,11 @@
     - ./configure --prefix=/usr/local/stow/zeromq-{{ zmq_version }}
     - make
     - make install
+  when: not install_dir.stat.exists
 
 - name: stow
   become: yes
   shell: stow zeromq-{{ zmq_version }}
   args:
     chdir: /usr/local/stow
+  when: not install_dir.stat.exists

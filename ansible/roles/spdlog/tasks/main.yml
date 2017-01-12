@@ -1,11 +1,15 @@
 ---
 
+- name: ensure spdlog installed
+  stat:
+    path: /usr/local/stow/spdlog-{{ spdlog_version }}
+  register: install_dir
+
 - name: download archived source
   get_url:
     url: https://github.com/gabime/spdlog/archive/v{{ spdlog_version }}.tar.gz
     dest: /tmp
-    sha256sum: bbbe5a855c8b309621352921d650449eb2f741d35d55ec50fb4d8122ddfb8f01
-    force: yes
+  when: not install_dir.stat.exists
 
 - name: unarchive source
   become: yes
@@ -13,21 +17,25 @@
     src: /tmp/spdlog-{{ spdlog_version }}.tar.gz
     dest: /usr/local/src
     remote_src: yes
+  when: not install_dir.stat.exists
 
 - name: create the directory
   become: yes
   file:
     path: /usr/local/stow/spdlog-{{ spdlog_version }}
     state: directory
+  when: not install_dir.stat.exists
 
 - name: install
   become: yes
   copy:
     src: /usr/local/src/spdlog-{{ spdlog_version }}/include
     dest: /usr/local/stow/spdlog-{{ spdlog_version }}
+  when: not install_dir.stat.exists
 
 - name: stow
   become: yes
   shell: stow spdlog-{{ spdlog_version }}
   args:
     chdir: /usr/local/stow
+  when: not install_dir.stat.exists

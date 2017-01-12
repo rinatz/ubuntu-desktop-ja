@@ -1,15 +1,22 @@
 ---
 
+- name: ensure cppitertools installed
+  stat:
+    path: /usr/local/stow/cppitertools-{{ cppitertools_version }}
+  register: install_dir
+
 - name: download archived source
   get_url:
     url: https://github.com/ryanhaining/cppitertools/archive/v{{ cppitertools_version }}.tar.gz
     dest: /tmp
+  when: not install_dir.stat.exists
 
 - name: unarchive source
   become: yes
   unarchive:
     src: /tmp/cppitertools-{{ cppitertools_version }}.tar.gz
     dest: /usr/local/src
+  when: not install_dir.stat.exists
 
 - name: create the directory
   become: yes
@@ -19,6 +26,7 @@
   with_items:
     - /usr/local/stow/cppitertools-{{ cppitertools_version }}/include/cppitertools
     - /usr/local/stow/cppitertools-{{ cppitertools_version }}/include/cppitertools/internal
+  when: not install_dir.stat.exists
 
 - name: copy files
   become: yes
@@ -28,6 +36,7 @@
     remote_src: yes
   with_fileglob:
     - /usr/local/src/cppitertools-{{ cppitertools_version }}/*.hpp
+  when: not install_dir.stat.exists
 
 - name: copy files
   become: yes
@@ -37,9 +46,11 @@
     remote_src: yes
   with_fileglob:
     - /usr/local/src/cppitertools-{{ cppitertools_version }}/internal/*.hpp
+  when: not install_dir.stat.exists
 
 - name: stow
   become: yes
   shell: stow cppitertools-{{ cppitertools_version }}
   args:
     chdir: /usr/local/stow
+  when: not install_dir.stat.exists

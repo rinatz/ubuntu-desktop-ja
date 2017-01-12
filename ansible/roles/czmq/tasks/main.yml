@@ -1,15 +1,22 @@
 ---
 
+- name: ensure czmq installed
+  stat:
+    path: /usr/local/stow/czmq-{{ czmq_version }}
+  register: install_dir
+
 - name: download archived source
   get_url:
     url: https://github.com/zeromq/czmq/archive/v{{ czmq_version }}.tar.gz
     dest: /tmp
+  when: not install_dir.stat.exists
 
 - name: unarchive source
   become: yes
   unarchive:
     src: /tmp/czmq-{{ czmq_version }}.tar.gz
     dest: /usr/local/src
+  when: not install_dir.stat.exists
 
 - name: compile and install
   become: yes
@@ -21,9 +28,11 @@
     - ./configure --prefix=/usr/local/stow/czmq-{{ czmq_version }}
     - make
     - make install
+  when: not install_dir.stat.exists
 
 - name: stow
   become: yes
   shell: stow czmq-{{ czmq_version }}
   args:
     chdir: /usr/local/stow
+  when: not install_dir.stat.exists

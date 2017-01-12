@@ -1,15 +1,23 @@
 ---
 
+- name: ensure fmt installed
+  stat:
+    path: /usr/local/stow/fmt-{{ fmt_version }}
+  register: install_dir
+
 - name: download archived source
   get_url:
     url: https://github.com/fmtlib/fmt/archive/{{ fmt_version }}.tar.gz
     dest: /tmp
+  when: not install_dir.stat.exists
 
 - name: unarchive source
   become: yes
   unarchive:
     src: /tmp/fmt-{{ fmt_version }}.tar.gz
     dest: /usr/local/src
+    remote_src: yes
+  when: not install_dir.stat.exists
 
 - name: compile and install
   become: yes
@@ -20,9 +28,11 @@
     - cmake -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local/stow/fmt-{{ fmt_version }} .
     - ninja
     - ninja install
+  when: not install_dir.stat.exists
 
 - name: stow
   become: yes
   shell: stow fmt-{{ fmt_version }}
   args:
     chdir: /usr/local/stow
+  when: not install_dir.stat.exists
