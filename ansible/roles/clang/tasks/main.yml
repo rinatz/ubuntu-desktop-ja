@@ -24,3 +24,4 @@
   shell: stow {{ clang }}
   args:
     chdir: /usr/local/stow
+  when: not install_dir.stat.exists
