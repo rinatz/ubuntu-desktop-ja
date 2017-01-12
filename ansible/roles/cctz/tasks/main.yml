@@ -1,0 +1,53 @@
+---
+
+- name: ensure cctz installed
+  stat:
+    path: /usr/local/stow/cctz-{{ cctz_version }}
+  register: install_dir
+
+- name: download archived source
+  get_url:
+    url: https://github.com/google/cctz/archive/v{{ cctz_version }}.tar.gz
+    dest: /tmp
+  when: not install_dir.stat.exists
+
+- name: unarchive source
+  become: yes
+  unarchive:
+    src: /tmp/cctz-{{ cctz_version }}.tar.gz
+    dest: /usr/local/src
+    remote_src: yes
+  when: not install_dir.stat.exists
+
+- name: create the directory
+  become: yes
+  file:
+    path: /usr/local/stow/cctz-{{ cctz_version }}/lib
+    state: directory
+  when: not install_dir.stat.exists
+
+- name: compile
+  become: yes
+  shell: make libcctz.a
+  args:
+    chdir: /usr/local/src/cctz-{{ cctz_version }}
+  when: not install_dir.stat.exists
+
+- name: install
+  become: yes
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items:
+    - src: /usr/local/src/cctz-{{ cctz_version }}/include
+      dest: /usr/local/stow/cctz-{{ cctz_version }}
+    - src: /usr/local/src/cctz-{{ cctz_version }}/libcctz.a
+      dest: /usr/local/stow/cctz-{{ cctz_version }}/lib
+  when: not install_dir.stat.exists
+
+- name: stow
+  become: yes
+  shell: stow cctz-{{ cctz_version }}
+  args:
+    chdir: /usr/local/stow
+  when: not install_dir.stat.exists
