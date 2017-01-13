@@ -9,3 +9,13 @@
     - .bashrc
     - .inputrc
     - .vimrc
+
+- name: remove CR code in dotfiles
+  replace:
+    dest: "{{ item }}"
+    regexp: '\r'
+    replace: ''
+  with_items:
+    - ~/.bashrc
+    - ~/.inputrc
+    - ~/.vimrc
