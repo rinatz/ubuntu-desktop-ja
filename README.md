@@ -113,6 +113,6 @@ Ubuntu が起動したら右上の歯車のアイコンから
 
 ## ライセンス
 
-[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](LICENSE)
 
 Copyright (c) 2017 Kenichiro IDA
