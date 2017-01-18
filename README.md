@@ -113,6 +113,6 @@ Ubuntu が起動したら右上の歯車のアイコンから
 
 ## ライセンス
 
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](LICENSE)
+[![license](https://img.shields.io/github/license/rinatz/ubuntu-desktop-ja.svg)](LICENSE)
 
 Copyright (c) 2017 Kenichiro IDA
