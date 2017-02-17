@@ -1,0 +1,4 @@
+---
+
+- name: install eclipse-cpp
+  shell: umake ide eclipse-cpp ~/.local/share/umake/ide/eclipse-cpp

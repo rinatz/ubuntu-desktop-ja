@@ -1,0 +1,4 @@
+---
+
+- name: install idea
+  shell: umake ide idea ~/.local/share/umake/ide/idea

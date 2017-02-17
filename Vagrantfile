@@ -82,4 +82,8 @@ Vagrant.configure("2") do |config|
   config.vm.provision "extra", type: "ansible_local", run: "never" do |ansible|
     ansible.playbook = "ansible/extra.yml"
   end
+
+  config.vm.provision "ide", type: "ansible_local", run: "never" do |ansible|
+    ansible.playbook = "ansible/ide.yml"
+  end
 end

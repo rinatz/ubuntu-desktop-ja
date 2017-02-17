@@ -1,0 +1,4 @@
+---
+
+- name: install pycharm
+  shell: umake ide pycharm ~/.local/share/umake/ide/pycharm
