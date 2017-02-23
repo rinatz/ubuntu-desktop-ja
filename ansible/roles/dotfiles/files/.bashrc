@@ -112,3 +112,10 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+# pyenv
+if [ -d ~/.pyenv ]; then
+    export PATH="~/.pyenv/bin:$PATH"
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+fi
