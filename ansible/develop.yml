@@ -2,6 +2,7 @@
 
 - hosts: all
   roles:
+    - scm
     - buildpack
     - docker
     - docker-compose
@@ -9,3 +10,4 @@
     - fonts
     - portainer
     - pyenv
+    - rbenv

@@ -1,0 +1,12 @@
+---
+
+- name: install packages
+  become: yes
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - git
+    - openssh-client
+    - procps

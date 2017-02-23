@@ -119,3 +119,9 @@ if [ -d ~/.pyenv ]; then
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
 fi
+
+# rbenv
+if [ -d ~/.rbenv ]; then
+    export PATH="~/.rbenv/bin:$PATH"
+    eval "$(rbenv init -)"
+fi
