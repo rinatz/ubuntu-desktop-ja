@@ -22,5 +22,6 @@
     - picojson
     - protobuf
     - spdlog
+    - swig
     - yaml-cpp
     - zeromq

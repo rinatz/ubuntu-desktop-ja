@@ -1,0 +1,38 @@
+---
+
+- name: ensure swig installed
+  stat:
+    path: /usr/local/stow/swig-{{ swig_version }}
+  register: install_dir
+
+- name: download archived source
+  get_url:
+    url: http://prdownloads.sourceforge.net/swig/swig-{{ swig_version }}.tar.gz
+    dest: /tmp
+  when: not install_dir.stat.exists
+
+- name: unarchive source
+  become: yes
+  unarchive:
+    src: /tmp/swig-{{ swig_version }}.tar.gz
+    dest: /usr/local/src
+    remote_src: yes
+  when: not install_dir.stat.exists
+
+- name: compile and install
+  become: yes
+  shell: "{{ item }}"
+  args:
+    chdir: /usr/local/src/swig-{{ swig_version }}
+  with_items:
+    - ./configure --prefix=/usr/local/stow/swig-{{ swig_version }}
+    - make
+    - make install
+  when: not install_dir.stat.exists
+
+- name: stow
+  become: yes
+  shell: stow swig-{{ swig_version }}
+  args:
+    chdir: /usr/local/stow
+  when: not install_dir.stat.exists
