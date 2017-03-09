@@ -10,6 +10,7 @@
     - dlang
     - fmt
     - gflags
+    - gperftools
     - gtest
     - java
     - jq
