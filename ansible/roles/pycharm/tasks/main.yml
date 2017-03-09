@@ -1,4 +1,10 @@
 ---
 
+- name: ensure pycharm installed
+  stat:
+    path: ~/.local/share/umake/ide/pycharm
+  register: install_dir
+
 - name: install pycharm
   shell: umake ide pycharm ~/.local/share/umake/ide/pycharm
+  when: not install_dir.stat.exists

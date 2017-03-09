@@ -1,4 +1,10 @@
 ---
 
+- name: ensure eclipse-cpp installed
+  stat:
+    path: ~/.local/share/umake/ide/eclipse-cpp
+  register: install_dir
+
 - name: install eclipse-cpp
   shell: umake ide eclipse-cpp ~/.local/share/umake/ide/eclipse-cpp
+  when: not install_dir.stat.exists

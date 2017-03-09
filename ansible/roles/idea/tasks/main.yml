@@ -1,4 +1,10 @@
 ---
 
+- name: ensure idea installed
+  stat:
+    path: ~/.local/share/umake/ide/idea
+  register: install_dir
+
 - name: install idea
   shell: umake ide idea ~/.local/share/umake/ide/idea
+  when: not install_dir.stat.exists
