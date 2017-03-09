@@ -10,6 +10,10 @@ Ubuntu 14.04 の日本語デスクトップ環境を作るための Vagrantfile 
 [Vagrant]: https://www.vagrantup.com/
 [VirtualBox]: https://www.virtualbox.org/
 
+動作確認は Vagrant 1.8.7 と VirtualBox 5.1.10 で行っています。
+バージョンの組み合わせがシビアで、
+相性が悪いと上手く起動できないことがあるためご注意下さい。
+
 ## 設定
 
 リポジトリをクローンした後 `Vagrantfile` と `ansible` ディレクトリを適当なところに置いてください。
