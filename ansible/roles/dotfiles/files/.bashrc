@@ -21,3 +21,16 @@ fi
 if [[ -z "${USER}" && -n "${USERNAME}" ]]; then
     export USER="${USERNAME}"
 fi
+
+# pyenv
+if [[ -d ~/.pyenv ]]; then
+    export PATH="~/.pyenv/bin:$PATH"
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+fi
+
+# rbenv
+if [[ -d ~/.rbenv ]]; then
+    export PATH="~/.rbenv/bin:$PATH"
+    eval "$(rbenv init -)"
+fi
