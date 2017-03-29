@@ -1,0 +1,8 @@
+---
+
+- name: install gibo
+  become: yes
+  get_url:
+    url: https://raw.githubusercontent.com/simonwhitaker/gibo/master/gibo
+    dest: /usr/local/bin
+    mode: 0755
