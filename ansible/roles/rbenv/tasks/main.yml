@@ -14,3 +14,4 @@
 
 - name: install rbenv-build
   shell: git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+  when: not rbenv_dir.stat.exists
