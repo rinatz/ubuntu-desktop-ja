@@ -22,8 +22,11 @@
 - name: create the directory
   become: yes
   file:
-    path: /usr/local/stow/cctz-{{ cctz_version }}/lib
+    path: "{{ item }}"
     state: directory
+  with_items:
+    - /usr/local/stow/cctz-{{ cctz_version }}/include/cctz
+    - /usr/local/stow/cctz-{{ cctz_version }}/lib
   when: not install_dir.stat.exists
 
 - name: compile
@@ -33,16 +36,20 @@
     chdir: /usr/local/src/cctz-{{ cctz_version }}
   when: not install_dir.stat.exists
 
-- name: install
+- name: copy headers
   become: yes
   copy:
-    src: "{{ item.src }}"
-    dest: "{{ item.dest }}"
-  with_items:
-    - src: /usr/local/src/cctz-{{ cctz_version }}/include
-      dest: /usr/local/stow/cctz-{{ cctz_version }}
-    - src: /usr/local/src/cctz-{{ cctz_version }}/libcctz.a
-      dest: /usr/local/stow/cctz-{{ cctz_version }}/lib
+    src: "{{ item }}"
+    dest: /usr/local/stow/cctz-{{ cctz_version }}/include/cctz
+  with_fileglob:
+    - /usr/local/src/cctz-{{ cctz_version }}/include/*
+  when: not install_dir.stat.exists
+
+- name: copy libs
+  become: yes
+  copy:
+    src: /usr/local/src/cctz-{{ cctz_version }}/libcctz.a
+    dest: /usr/local/stow/cctz-{{ cctz_version }}/lib
   when: not install_dir.stat.exists
 
 - name: stow
