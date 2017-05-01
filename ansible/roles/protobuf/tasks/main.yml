@@ -25,7 +25,7 @@
   args:
     chdir: /usr/local/src/protobuf-{{ protobuf_version }}
   with_items:
-    - ./configure --prefix=/usr/local/stow/protobuf-{{ protobuf_version }}
+    - ./configure --prefix=/usr/local/stow/protobuf-{{ protobuf_version }} --with-pic
     - make
     - make install
   when: not install_dir.stat.exists
