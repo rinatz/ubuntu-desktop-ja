@@ -95,6 +95,14 @@ Eclipse などの IDE をインストールします。
     $ cd $HOME
     $ vagrant up
 
+`vagrant up` で実行される Playbook は `bootstrap` のみとなります。
+その他の Playbook を実行する場合は `vagrant up` 完了後に
+下記を実行して下さい。
+
+    $ vagrant provision --provision-with x,y,z
+
+`x,y,z` の部分は `develop` や `extra` などの名称がカンマ区切りで入ります。
+
 ## 日本語化
 
 Ubuntu が起動したら右上の歯車のアイコンから
