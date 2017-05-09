@@ -9,5 +9,6 @@
     - dotfiles
     - fonts
     - portainer
+    - pip
     - pyenv
     - rbenv
