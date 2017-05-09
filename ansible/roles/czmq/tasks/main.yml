@@ -5,14 +5,10 @@
     path: /usr/local/stow/czmq-{{ czmq_version }}
   register: install_dir
 
-# - name: download archived source
-#   get_url:
-#     url: https://github.com/zeromq/czmq/archive/v{{ czmq_version }}.tar.gz
-#     dest: /tmp
-#   when: not install_dir.stat.exists
-
 - name: download archived source
-  shell: curl -fsSL https://github.com/zeromq/czmq/archive/{v{{ czmq_version }}.tar.gz} -o /tmp/#1
+  get_url:
+    url: https://github.com/zeromq/czmq/archive/v{{ czmq_version }}.tar.gz
+    dest: /tmp
   when: not install_dir.stat.exists
 
 - name: unarchive source

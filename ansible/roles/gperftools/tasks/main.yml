@@ -5,14 +5,10 @@
     path: /usr/local/stow/gperftools-{{ gperftools_version }}
   register: install_dir
 
-# - name: download archived source
-#   get_url:
-#     url: https://github.com/gperftools/gperftools/releases/download/gperftools-{{ gperftools_version }}/gperftools-{{ gperftools_version }}.tar.gz
-#     dest: /tmp
-#   when: not install_dir.stat.exists
-
 - name: download archived source
-  shell: curl -fsSL https://github.com/gperftools/gperftools/releases/download/gperftools-{{ gperftools_version }}/{gperftools-{{ gperftools_version }}.tar.gz} -o /tmp/#1
+  get_url:
+    url: https://github.com/gperftools/gperftools/releases/download/gperftools-{{ gperftools_version }}/gperftools-{{ gperftools_version }}.tar.gz
+    dest: /tmp
   when: not install_dir.stat.exists
 
 - name: unarchive source
