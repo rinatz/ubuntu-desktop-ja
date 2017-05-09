@@ -1,8 +1,18 @@
 ---
 
+# - name: download docker-compose
+#   become: yes
+#   get_url:
+#     url: https://github.com/docker/compose/releases/download/{{ compose_version }}/docker-compose-Linux-x86_64
+#     dest: /usr/local/bin/docker-compose
+#     mode: 0755
+
 - name: download docker-compose
   become: yes
-  get_url:
-    url: https://github.com/docker/compose/releases/download/{{ compose_version }}/docker-compose-Linux-x86_64
-    dest: /usr/local/bin/docker-compose
+  shell: curl -fsSL https://github.com/docker/compose/releases/download/{{ compose_version }}/docker-compose-Linux-x86_64 -o /usr/local/bin/docker-compose
+
+- name: add permisson
+  become: yes
+  file:
+    path: /usr/local/bin/docker-compose
     mode: 0755

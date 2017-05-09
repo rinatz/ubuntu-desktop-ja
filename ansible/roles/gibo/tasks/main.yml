@@ -1,8 +1,18 @@
 ---
 
+# - name: install gibo
+#   become: yes
+#   get_url:
+#     url: https://raw.githubusercontent.com/simonwhitaker/gibo/master/gibo
+#     dest: /usr/local/bin
+#     mode: 0755
+
 - name: install gibo
   become: yes
-  get_url:
-    url: https://raw.githubusercontent.com/simonwhitaker/gibo/master/gibo
-    dest: /usr/local/bin
+  shell: curl -fsSL https://raw.githubusercontent.com/simonwhitaker/gibo/master/{gibo} -o /usr/local/bin/#1
+
+- name: add permisson
+  become: yes
+  file:
+    path: /usr/local/bin/gibo
     mode: 0755

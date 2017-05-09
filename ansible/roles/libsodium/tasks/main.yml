@@ -5,10 +5,14 @@
     path: /usr/local/stow/libsodium-{{ sodium_version }}
   register: install_dir
 
+# - name: download archived source
+#   get_url:
+#     url: https://github.com/jedisct1/libsodium/releases/download/{{ sodium_version }}/libsodium-{{ sodium_version }}.tar.gz
+#     dest: /tmp
+#   when: not install_dir.stat.exists
+
 - name: download archived source
-  get_url:
-    url: https://github.com/jedisct1/libsodium/releases/download/{{ sodium_version }}/libsodium-{{ sodium_version }}.tar.gz
-    dest: /tmp
+  shell: curl -fsSL https://github.com/jedisct1/libsodium/releases/download/{{ sodium_version }}/{libsodium-{{ sodium_version }}.tar.gz} -o /tmp/#1
   when: not install_dir.stat.exists
 
 - name: unarchive source
