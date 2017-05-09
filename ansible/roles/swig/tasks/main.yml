@@ -5,10 +5,11 @@
     path: /usr/local/stow/swig-{{ swig_version }}
   register: install_dir
 
+# get_url fails with SSL validation because of lack of the feature of SNI.
 - name: download archived source
-  get_url:
-    url: http://prdownloads.sourceforge.net/swig/swig-{{ swig_version }}.tar.gz
-    dest: /tmp
+  shell: curl -fsSL http://prdownloads.sourceforge.net/swig/{swig-{{ swig_version }}.tar.gz} -o /tmp/#1
+  args:
+    warn: no
   when: not install_dir.stat.exists
 
 - name: unarchive source
