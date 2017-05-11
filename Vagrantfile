@@ -71,19 +71,7 @@ Vagrant.configure("2") do |config|
   #   apt-get install -y apache2
   # SHELL
 
-  config.vm.provision "bootstrap", type: "ansible_local" do |ansible|
+  config.vm.provision "site", type: "ansible_local" do |ansible|
     ansible.playbook = "ansible/site.yml"
-  end
-
-  config.vm.provision "develop", type: "ansible_local", run: "never" do |ansible|
-    ansible.playbook = "ansible/develop.yml"
-  end
-
-  config.vm.provision "extra", type: "ansible_local", run: "never" do |ansible|
-    ansible.playbook = "ansible/extra.yml"
-  end
-
-  config.vm.provision "ide", type: "ansible_local", run: "never" do |ansible|
-    ansible.playbook = "ansible/ide.yml"
   end
 end
