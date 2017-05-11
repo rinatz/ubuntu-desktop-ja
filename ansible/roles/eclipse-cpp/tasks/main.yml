@@ -8,3 +8,14 @@
 - name: install eclipse-cpp
   shell: umake ide eclipse-cpp ~/.local/share/umake/ide/eclipse-cpp
   when: not install_dir.stat.exists
+
+- name: configure eclipse.ini
+  lineinfile:
+    path: ~/.local/share/umake/ide/eclipse-cpp/eclipse.ini
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+  with_items:
+    - regexp: -Xms.*
+      line: -Xms1G
+    - regexp: -Xmx.*
+      line: -Xmx3G
