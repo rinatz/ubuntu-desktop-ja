@@ -21,9 +21,9 @@
 
 - name: install
   become: yes
-  copy:
-    src: /usr/local/src/spdlog-{{ spdlog_version }}/include
-    dest: /usr/local/stow/spdlog-{{ spdlog_version }}
+  command: cp -rp include /usr/local/stow/spdlog-{{ spdlog_version }}
+  args:
+    chdir: /usr/local/src/spdlog-{{ spdlog_version }}
 
 - name: stow
   become: yes
