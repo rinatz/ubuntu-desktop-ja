@@ -1,23 +1,17 @@
 ---
 
-- name: ensure libsodium installed
+- name: ensure downloaded
   stat:
-    path: /usr/local/stow/libsodium-{{ sodium_version }}
-  register: install_dir
+    path: /usr/local/src/libsodium-{{ sodium_version }}
+  register: src_dir
 
-- name: download archived source
-  get_url:
-    url: https://github.com/jedisct1/libsodium/releases/download/{{ sodium_version }}/libsodium-{{ sodium_version }}.tar.gz
-    dest: /tmp
-  when: not install_dir.stat.exists
-
-- name: unarchive source
+- name: download
   become: yes
   unarchive:
-    src: /tmp/libsodium-{{ sodium_version }}.tar.gz
+    src: https://github.com/jedisct1/libsodium/releases/download/{{ sodium_version }}/libsodium-{{ sodium_version }}.tar.gz
     dest: /usr/local/src
     remote_src: yes
-  when: not install_dir.stat.exists
+  when: not src_dir.stat.exists
 
 - name: compile and install
   become: yes
@@ -28,11 +22,9 @@
     - ./configure --prefix=/usr/local/stow/libsodium-{{ sodium_version }}
     - make
     - make install
-  when: not install_dir.stat.exists
 
 - name: stow
   become: yes
-  shell: stow libsodium-{{ sodium_version }}
+  shell: stow -R libsodium-{{ sodium_version }}
   args:
     chdir: /usr/local/stow
-  when: not install_dir.stat.exists

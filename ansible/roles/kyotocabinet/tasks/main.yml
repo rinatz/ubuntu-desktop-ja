@@ -1,23 +1,17 @@
 ---
 
-- name: ensure kyotocabinet installed
+- name: ensure downloaded
   stat:
-    path: /usr/local/stow/kyotocabinet-{{ kc_version }}
-  register: install_dir
+    path: /usr/local/src/kyotocabinet-{{ kc_version }}
+  register: src_dir
 
-- name: download archived source
-  get_url:
-    url: http://fallabs.com/kyotocabinet/pkg/kyotocabinet-{{ kc_version }}.tar.gz
-    dest: /tmp
-  when: not install_dir.stat.exists
-
-- name: unarchive source
+- name: download
   become: yes
   unarchive:
-    src: /tmp/kyotocabinet-{{ kc_version }}.tar.gz
+    src: http://fallabs.com/kyotocabinet/pkg/kyotocabinet-{{ kc_version }}.tar.gz
     dest: /usr/local/src
     remote_src: yes
-  when: not install_dir.stat.exists
+  when: not src_dir.stat.exists
 
 - name: compile and install
   become: yes
@@ -28,11 +22,9 @@
     - ./configure --prefix=/usr/local/stow/kyotocabinet-{{ kc_version }}
     - make
     - make install
-  when: not install_dir.stat.exists
 
 - name: stow
   become: yes
-  shell: stow kyotocabinet-{{ kc_version }}
+  shell: stow -R kyotocabinet-{{ kc_version }}
   args:
     chdir: /usr/local/stow
-  when: not install_dir.stat.exists

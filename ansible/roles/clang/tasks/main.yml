@@ -1,27 +1,20 @@
 ---
 
-- name: ensure clang installed
+- name: ensure downloaded
   stat:
     path: /usr/local/stow/{{ clang }}
   register: install_dir
 
-- name: download archived file
-  get_url:
-    url: http://llvm.org/releases/{{ clang_version }}/{{ clang }}.tar.xz
-    dest: /tmp
-  when: not install_dir.stat.exists
-
-- name: unarchive the file
+- name: download
   become: yes
   unarchive:
-    src: /tmp/{{ clang }}.tar.xz
+    src: http://llvm.org/releases/{{ clang_version }}/{{ clang }}.tar.xz
     dest: /usr/local/stow
     remote_src: yes
   when: not install_dir.stat.exists
 
 - name: stow
   become: yes
-  shell: stow {{ clang }}
+  shell: stow -R {{ clang }}
   args:
     chdir: /usr/local/stow
-  when: not install_dir.stat.exists

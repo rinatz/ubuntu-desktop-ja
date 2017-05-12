@@ -1,24 +1,18 @@
 ---
 
-- name: ensure swig installed
+- name: ensure downloaded
   stat:
-    path: /usr/local/stow/swig-{{ swig_version }}
-  register: install_dir
+    path: /usr/local/src/swig-{{ swig_version }}
+  register: src_dir
 
-# get_url fails with SSL validation because of lack of the feature of SNI.
-- name: download archived source
-  shell: curl -fsSL http://prdownloads.sourceforge.net/swig/{swig-{{ swig_version }}.tar.gz} -o /tmp/#1
-  args:
-    warn: no
-  when: not install_dir.stat.exists
-
-- name: unarchive source
+# unarchive fails with SSL validation because of lack of the feature of SNI.
+- name: download
   become: yes
-  unarchive:
-    src: /tmp/swig-{{ swig_version }}.tar.gz
-    dest: /usr/local/src
-    remote_src: yes
-  when: not install_dir.stat.exists
+  shell: curl -fsSL http://prdownloads.sourceforge.net/swig/swig-{{ swig_version }}.tar.gz | tar zxv
+  args:
+    chdir: /usr/local/src
+    warn: no
+  when: not src_dir.stat.exists
 
 - name: compile and install
   become: yes
@@ -29,11 +23,9 @@
     - ./configure --prefix=/usr/local/stow/swig-{{ swig_version }}
     - make
     - make install
-  when: not install_dir.stat.exists
 
 - name: stow
   become: yes
-  shell: stow swig-{{ swig_version }}
+  shell: stow -R swig-{{ swig_version }}
   args:
     chdir: /usr/local/stow
-  when: not install_dir.stat.exists

@@ -1,25 +1,19 @@
 ---
 
-- name: ensure cctz installed
+- name: ensure downloaded
   stat:
-    path: /usr/local/stow/cctz-{{ cctz_version }}
-  register: install_dir
+    path: /usr/local/src/cctz-{{ cctz_version }}
+  register: src_dir
 
-- name: download archived source
-  get_url:
-    url: https://github.com/google/cctz/archive/v{{ cctz_version }}.tar.gz
-    dest: /tmp
-  when: not install_dir.stat.exists
-
-- name: unarchive source
+- name: download
   become: yes
   unarchive:
-    src: /tmp/cctz-{{ cctz_version }}.tar.gz
-    dest: /usr/local/src
+    src: https://github.com/google/cctz/archive/v{{ cctz_version }}.tar.gz
+    dest: /usr/local/src/cctz-{{ cctz_version }}
     remote_src: yes
-  when: not install_dir.stat.exists
+  when: not src_dir.stat.exists
 
-- name: create the directory
+- name: create directory
   become: yes
   file:
     path: "{{ item }}"
@@ -27,14 +21,12 @@
   with_items:
     - /usr/local/stow/cctz-{{ cctz_version }}/include/cctz
     - /usr/local/stow/cctz-{{ cctz_version }}/lib
-  when: not install_dir.stat.exists
 
 - name: compile
   become: yes
   shell: make libcctz.a
   args:
     chdir: /usr/local/src/cctz-{{ cctz_version }}
-  when: not install_dir.stat.exists
 
 - name: copy headers
   become: yes
@@ -43,18 +35,15 @@
     dest: /usr/local/stow/cctz-{{ cctz_version }}/include/cctz
   with_fileglob:
     - /usr/local/src/cctz-{{ cctz_version }}/include/*
-  when: not install_dir.stat.exists
 
 - name: copy libs
   become: yes
   copy:
     src: /usr/local/src/cctz-{{ cctz_version }}/libcctz.a
     dest: /usr/local/stow/cctz-{{ cctz_version }}/lib
-  when: not install_dir.stat.exists
 
 - name: stow
   become: yes
-  shell: stow cctz-{{ cctz_version }}
+  shell: stow -R cctz-{{ cctz_version }}
   args:
     chdir: /usr/local/stow
-  when: not install_dir.stat.exists

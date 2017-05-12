@@ -1,23 +1,17 @@
 ---
 
-- name: ensure gperftools installed
+- name: ensure downloaded
   stat:
-    path: /usr/local/stow/gperftools-{{ gperftools_version }}
-  register: install_dir
+    path: /usr/local/src/gperftools-{{ gperftools_version }}
+  register: src_dir
 
-- name: download archived source
-  get_url:
-    url: https://github.com/gperftools/gperftools/releases/download/gperftools-{{ gperftools_version }}/gperftools-{{ gperftools_version }}.tar.gz
-    dest: /tmp
-  when: not install_dir.stat.exists
-
-- name: unarchive source
+- name: download
   become: yes
   unarchive:
-    src: /tmp/gperftools-{{ gperftools_version }}.tar.gz
+    src: https://github.com/gperftools/gperftools/releases/download/gperftools-{{ gperftools_version }}/gperftools-{{ gperftools_version }}.tar.gz
     dest: /usr/local/src
     remote_src: yes
-  when: not install_dir.stat.exists
+  when: not src_dir.stat.exists
 
 - name: compile and install
   become: yes
@@ -28,11 +22,9 @@
     - ./configure --prefix=/usr/local/stow/gperftools-{{ gperftools_version }}
     - make
     - make install
-  when: not install_dir.stat.exists
 
 - name: stow
   become: yes
-  shell: stow gperftools-{{ gperftools_version }}
+  shell: stow -R gperftools-{{ gperftools_version }}
   args:
     chdir: /usr/local/stow
-  when: not install_dir.stat.exists
