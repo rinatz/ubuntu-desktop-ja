@@ -33,6 +33,7 @@
   copy:
     src: "{{ item }}"
     dest: /usr/local/stow/cctz-{{ cctz_version }}/include/cctz
+    remote_src: yes
   with_fileglob:
     - /usr/local/src/cctz-{{ cctz_version }}/include/*
 
@@ -41,6 +42,7 @@
   copy:
     src: /usr/local/src/cctz-{{ cctz_version }}/libcctz.a
     dest: /usr/local/stow/cctz-{{ cctz_version }}/lib
+    remote_src: yes
 
 - name: stow
   become: yes

@@ -24,6 +24,7 @@
   copy:
     src: /usr/local/src/picojson-{{ picojson_version }}/picojson.h
     dest: /usr/local/stow/picojson-{{ picojson_version }}/include/picojson
+    remote_src: yes
 
 - name: stow
   become: yes
