@@ -12,13 +12,14 @@
     repo: deb https://apt.dockerproject.org/repo ubuntu-trusty main
     filename: docker.list
     state: present
+  register: add_apt_repo
 
 - name: install packages
   become: yes
   apt:
     name: "{{ item }}"
     state: present
-    update_cache: yes
+    update_cache: "{{ add_apt_repo|changed }}"
   with_items:
     - linux-image-extra-4.4.0-31-generic
     - linux-image-extra-virtual

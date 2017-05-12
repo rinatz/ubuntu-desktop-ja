@@ -4,6 +4,7 @@
   become: yes
   apt_repository:
     repo: ppa:webupd8team/java
+  register: add_apt_repo
 
 - name: create debconf
   become: yes
@@ -18,4 +19,4 @@
   apt:
     name: oracle-java8-installer
     state: present
-    update_cache: yes
+    update_cache: "{{ add_apt_repo|changed }}"

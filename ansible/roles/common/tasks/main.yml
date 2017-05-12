@@ -20,6 +20,7 @@
     dest: /etc/apt/sources.list
     regexp: '^(.*)us.archive.ubuntu.com(.*)$'
     replace: '\1jp.archive.ubuntu.com\2'
+  register: change_apt_repo
 
 - name: add apt key
   become: yes
@@ -35,10 +36,11 @@
   get_url:
     url: https://www.ubuntulinux.jp/sources.list.d/trusty.list
     dest: /etc/apt/sources.list.d/ubuntu-ja.list
+  register: add_apt_repo
 
 - name: install packages
   become: yes
   apt:
     name: ubuntu-defaults-ja
     state: present
-    update_cache: yes
+    update_cache: "{{ change_apt_repo|changed or add_apt_repo|changed }}"

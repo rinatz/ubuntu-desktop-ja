@@ -4,10 +4,11 @@
   become: yes
   apt_repository:
     repo: ppa:ubuntu-desktop/ubuntu-make
+  register: add_apt_repo
 
 - name: install packages
   become: yes
   apt:
     name: ubuntu-make
     state: present
-    update_cache: yes
+    update_cache: "{{ add_apt_repo|changed }}"
