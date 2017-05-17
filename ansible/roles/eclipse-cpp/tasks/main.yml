@@ -19,3 +19,14 @@
       line: -Xms1G
     - regexp: -Xmx.*
       line: -Xmx3G
+
+- name: copy .eclipse.epf
+  copy:
+    src: .eclipse.epf
+    dest: ~/
+
+- name: remove CR code in .eclipse.epf
+  replace:
+    dest: ~/.eclipse.epf
+    regexp: '\r'
+    replace: ''
