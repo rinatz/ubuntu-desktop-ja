@@ -10,6 +10,7 @@
   unarchive:
     src: https://github.com/ryanhaining/cppitertools/archive/v{{ cppitertools_version }}.tar.gz
     dest: /usr/local/src
+    remote_src: yes
   when: not src_dir.stat.exists
 
 - name: create directory
