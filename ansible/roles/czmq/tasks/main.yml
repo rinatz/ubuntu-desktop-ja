@@ -10,6 +10,7 @@
   unarchive:
     src: https://github.com/zeromq/czmq/archive/v{{ czmq_version }}.tar.gz
     dest: /usr/local/src
+    remote_src: yes
   when: not src_dir.stat.exists
 
 - name: compile and install

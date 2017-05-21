@@ -9,7 +9,7 @@
   become: yes
   unarchive:
     src: https://github.com/google/cctz/archive/v{{ cctz_version }}.tar.gz
-    dest: /usr/local/src/cctz-{{ cctz_version }}
+    dest: /usr/local/src
     remote_src: yes
   when: not src_dir.stat.exists
 
