@@ -1,4 +1,4 @@
-#Mon May 22 14:55:37 JST 2017
+#Thu Jun 15 22:02:59 JST 2017
 \!/=
 /configuration/org.eclipse.core.net/org.eclipse.core.net.hasMigrated=true
 /configuration/org.eclipse.ui.ide/MAX_RECENT_WORKSPACES=8
@@ -9,6 +9,7 @@
 /instance/org.eclipse.cdt.core/build.all.configs.enabled=false
 /instance/org.eclipse.cdt.core/build.proj.ref.configs.enabled=false
 /instance/org.eclipse.cdt.core/doctool/workspace.default=org.eclipse.cdt.ui.doxygen
+/instance/org.eclipse.cdt.core/errorparser.default.ids=org.eclipse.cdt.autotools.core.ErrorParser;org.eclipse.cdt.core.GASErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GmakeErrorParser;org.eclipse.cdt.core.VCErrorParser;org.eclipse.cdt.core.CWDLocator;org.eclipse.cdt.core.MakeErrorParser
 /instance/org.eclipse.cdt.core/indexer/indexAllFiles=true
 /instance/org.eclipse.cdt.core/indexer/indexAllHeaderVersions=false
 /instance/org.eclipse.cdt.core/indexer/indexAllVersionsSpecificHeaders=
@@ -23,6 +24,7 @@
 /instance/org.eclipse.cdt.core/indexer/skipTypeReferences=false
 /instance/org.eclipse.cdt.core/indexer/updatePolicy=2
 /instance/org.eclipse.cdt.core/indexer/useHeuristicIncludeResolution=true
+/instance/org.eclipse.cdt.core/language.settings.providers.workspace.prefs.toggle=true
 /instance/org.eclipse.cdt.core/org.eclipse.cdt.core.formatter.alignment_for_arguments_in_method_invocation=18
 /instance/org.eclipse.cdt.core/org.eclipse.cdt.core.formatter.alignment_for_assignment=16
 /instance/org.eclipse.cdt.core/org.eclipse.cdt.core.formatter.alignment_for_base_clause_in_type_declaration=16
