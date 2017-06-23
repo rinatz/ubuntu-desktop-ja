@@ -5,17 +5,11 @@
     src: "{{ item }}"
     dest: ~/
     mode: 0644
-  with_items:
-    - .bashrc
-    - .inputrc
-    - .vimrc
+  with_items: "{{ files }}"
 
 - name: remove CR code in dotfiles
   replace:
-    dest: "{{ item }}"
+    path: "~/{{ item }}"
     regexp: '\r'
     replace: ''
-  with_items:
-    - ~/.bashrc
-    - ~/.inputrc
-    - ~/.vimrc
+  with_items: "{{ files }}"
