@@ -13,6 +13,7 @@
     - gibo
     - gperftools
     - gtest
+    - httpd
     - java
     - jq
     - kyotocabinet

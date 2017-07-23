@@ -1,0 +1,45 @@
+---
+
+- name: install packages
+  become: yes
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+    cache_valid_time: 3600
+  with_items:
+    - apache2
+    - libapache2-mod-fcgid
+    - libfcgi-dev
+
+- name: create directory
+  become: yes
+  file:
+    path: /var/www/cgi-bin
+    state: directory
+
+- name: copy files
+  become: yes
+  copy:
+    src: serve-fcgi-bin.conf
+    dest: /etc/apache2/conf-available/serve-fcgi-bin.conf
+
+- name: remove CR code in files
+  replace:
+    dest: /etc/apache2/conf-available/serve-fcgi-bin.conf
+    regexp: '\r'
+    replace: ''
+
+- name: disable cgi
+  become: yes
+  shell: a2disconf serve-cgi-bin
+
+- name: enable fcgi
+  become: yes
+  shell: a2enconf serve-fcgi-bin
+
+- name: reload configuration files
+  become: yes
+  service:
+    name: apache2
+    state: reloaded
