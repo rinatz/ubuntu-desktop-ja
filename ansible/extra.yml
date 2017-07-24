@@ -28,5 +28,6 @@
     - protobuf
     - spdlog
     - swig
+    - tree
     - yaml-cpp
     - zeromq

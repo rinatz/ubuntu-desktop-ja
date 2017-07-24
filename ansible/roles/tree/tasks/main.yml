@@ -1,0 +1,9 @@
+---
+
+- name: install tree
+  become: yes
+  apt:
+    name: tree
+    state: present
+    update_cache: yes
+    cache_valid_time: 3600
