@@ -8,7 +8,7 @@
 - name: download
   become: yes
   unarchive:
-    src: https://github.com/google/cctz/archive/v{{ cctz_version }}.tar.gz
+    src: https://github.com/google/cctz/archive/{{ cctz_version }}.tar.gz
     dest: /usr/local/src
     remote_src: yes
   when: not src_dir.stat.exists
