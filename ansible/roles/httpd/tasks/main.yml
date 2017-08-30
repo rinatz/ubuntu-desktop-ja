@@ -25,6 +25,7 @@
     dest: /etc/apache2/conf-available/serve-fcgi-bin.conf
 
 - name: remove CR code in files
+  become: yes
   replace:
     dest: /etc/apache2/conf-available/serve-fcgi-bin.conf
     regexp: '\r'
