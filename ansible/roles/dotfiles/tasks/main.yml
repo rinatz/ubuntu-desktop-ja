@@ -1,15 +1,16 @@
 ---
 
-- name: add dotfiles
-  copy:
-    src: "{{ item }}"
-    dest: ~/
-    mode: 0644
-  with_items: "{{ files }}"
+- name: clone dotfiles
+  git:
+    repo: https://github.com/rinatz/dotfiles.git
+    dest: ~/dotfiles
 
-- name: remove CR code in dotfiles
-  replace:
-    path: "~/{{ item }}"
-    regexp: '\r'
-    replace: ''
-  with_items: "{{ files }}"
+- name: stow
+  shell: stow -R "{{ item }}"
+  args:
+    chdir: ~/dotfiles
+  with_items:
+    - bash
+    - completion
+    - gdb
+    - vim
