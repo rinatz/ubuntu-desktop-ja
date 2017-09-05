@@ -1,5 +1,15 @@
 ---
 
+- name: remove dotfiles
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+    - ~/.bashrc
+    - ~/.inputrc
+    - ~/.gdbinit
+    - ~/.vimrc
+
 - name: clone dotfiles
   git:
     repo: https://github.com/rinatz/dotfiles.git

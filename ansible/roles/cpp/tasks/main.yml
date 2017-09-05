@@ -15,7 +15,6 @@
     - libboost1.55-all-dev
     - ninja-build
     - qt5-qmake
-    - stow
     - valgrind
 
 - name: enable ccache
