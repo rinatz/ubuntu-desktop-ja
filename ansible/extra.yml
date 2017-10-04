@@ -22,7 +22,6 @@
     - libxml2-utils
     - libzip
     - nkf
-    - nvm
     - picojson
     - protobuf
     - spdlog

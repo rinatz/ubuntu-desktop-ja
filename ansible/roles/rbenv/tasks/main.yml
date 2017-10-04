@@ -1,17 +1,15 @@
 ---
 
-- name: ensure rbenv installed
-  stat:
-    path: ~/.rbenv
-  register: rbenv_dir
-
 - name: install rbenv
-  shell: "{{ item }}"
-  with_items:
-    - git clone https://github.com/rbenv/rbenv.git ~/.rbenv
-    - cd ~/.rbenv && src/configure && make -C src
-  when: not rbenv_dir.stat.exists
+  git:
+    repo: https://github.com/rbenv/rbenv.git
+    dest: ~/.rbenv
+
+- name: compile dynamic bash extension
+  shell: cd ~/.rbenv && src/configure && make -C src
+  ignore_errors: yes
 
 - name: install rbenv-build
-  shell: git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
-  when: not rbenv_dir.stat.exists
+  git:
+    repo: https://github.com/rbenv/ruby-build.git
+    dest: ~/.rbenv/plugins/ruby-build

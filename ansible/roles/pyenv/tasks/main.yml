@@ -1,6 +1,6 @@
 ---
 
 - name: install pyenv
-  shell: curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash
-  args:
-    warn: no
+  git:
+    repo: https://github.com/pyenv/pyenv.git
+    dest: ~/.pyenv

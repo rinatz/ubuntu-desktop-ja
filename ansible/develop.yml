@@ -6,6 +6,7 @@
     - buildpack
     - docker
     - docker-compose
+    - nvm
     - stow
     - dotfiles
     - fonts
