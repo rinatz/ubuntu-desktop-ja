@@ -2,6 +2,7 @@
 
 - hosts: all
   roles:
+    - apache
     - cctz
     - cifs-utils
     - clang
@@ -12,7 +13,6 @@
     - gflags
     - gperftools
     - gtest
-    - httpd
     - java
     - jq
     - kyotocabinet
