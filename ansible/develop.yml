@@ -10,4 +10,5 @@
     - dotfiles
     - fonts
     - pyenv
+    - python-dev
     - rbenv
