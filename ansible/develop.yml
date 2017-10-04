@@ -9,6 +9,5 @@
     - stow
     - dotfiles
     - fonts
-    - portainer
     - pyenv
     - rbenv
