@@ -1,7 +1,0 @@
----
-
-files:
-  - .bashrc
-  - .gdbinit
-  - .inputrc
-  - .vimrc
