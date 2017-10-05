@@ -1,28 +1,6 @@
 ---
 
-- name: remove dotfiles
-  file:
-    path: "{{ item }}"
-    state: absent
-  with_items:
-    - ~/.bashrc
-    - ~/.inputrc
-    - ~/.gdbinit
-    - ~/.gitconfig
-    - ~/.vimrc
-
-- name: clone dotfiles
-  git:
-    repo: https://github.com/rinatz/dotfiles.git
-    dest: ~/dotfiles
-
-- name: stow
-  shell: stow -R "{{ item }}"
+- name: install dotfiles
+  shell: curl -fsSL https://goo.gl/fYLxk2 | bash
   args:
-    chdir: ~/dotfiles
-  with_items:
-    - bash
-    - completion
-    - gdb
-    - git
-    - vim
+    warn: no
