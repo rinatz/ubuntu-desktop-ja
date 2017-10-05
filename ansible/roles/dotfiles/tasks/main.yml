@@ -8,6 +8,7 @@
     - ~/.bashrc
     - ~/.inputrc
     - ~/.gdbinit
+    - ~/.gitconfig
     - ~/.vimrc
 
 - name: clone dotfiles
@@ -23,4 +24,5 @@
     - bash
     - completion
     - gdb
+    - git
     - vim
