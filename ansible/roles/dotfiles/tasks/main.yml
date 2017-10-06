@@ -1,6 +1,6 @@
 ---
 
 - name: install dotfiles
-  shell: curl -fsSL https://goo.gl/fYLxk2 | bash
+  shell: curl -fsSL https://rinatz.github.io/dotfiles/install.sh | bash
   args:
     warn: no
