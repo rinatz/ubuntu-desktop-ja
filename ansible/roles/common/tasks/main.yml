@@ -36,6 +36,9 @@
 - name: install packages
   become: yes
   apt:
-    name: ubuntu-defaults-ja
+    name: "{{ item }}"
     state: present
     update_cache: "{{ change_apt_repo|changed or add_apt_repo|changed }}"
+  with_items:
+    - ubuntu-desktop
+    - ubuntu-defaults-ja
