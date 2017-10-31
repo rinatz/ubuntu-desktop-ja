@@ -1,10 +1,5 @@
 ---
 
-- name: remove crash report files
-  file:
-    name: /var/crash/*
-    state: absent
-
 - name: set timezone to Asia/Tokyo
   become: yes
   timezone:
@@ -18,9 +13,10 @@
   become: yes
   replace:
     dest: /etc/apt/sources.list
-    regexp: '^(.*)us.archive.ubuntu.com(.*)$'
-    replace: '\1jp.archive.ubuntu.com\2'
-  register: change_apt_repo
+    regexp: 'http://archive.ubuntu.com/ubuntu/'
+    replace: 'http://ftp.yz.yamagata-u.ac.jp/pub/linux/ubuntu/archives/'
+  notify:
+    - update cache
 
 - name: add apt key
   become: yes
@@ -36,11 +32,5 @@
   get_url:
     url: https://www.ubuntulinux.jp/sources.list.d/trusty.list
     dest: /etc/apt/sources.list.d/ubuntu-ja.list
-  register: add_apt_repo
-
-- name: install packages
-  become: yes
-  apt:
-    name: ubuntu-defaults-ja
-    state: present
-    update_cache: "{{ change_apt_repo|changed or add_apt_repo|changed }}"
+  notify:
+    - update cache
