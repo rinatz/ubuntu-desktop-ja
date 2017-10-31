@@ -2,7 +2,6 @@
 
 - hosts: all
   roles:
-    - ubuntu-desktop
     - scm
     - buildpack
     - docker

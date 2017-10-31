@@ -15,8 +15,7 @@
     dest: /etc/apt/sources.list
     regexp: 'http://archive.ubuntu.com/ubuntu/'
     replace: 'http://ftp.yz.yamagata-u.ac.jp/pub/linux/ubuntu/archives/'
-  notify:
-    - update cache
+  register: change_apt_repo
 
 - name: add apt key
   become: yes
@@ -32,5 +31,11 @@
   get_url:
     url: https://www.ubuntulinux.jp/sources.list.d/trusty.list
     dest: /etc/apt/sources.list.d/ubuntu-ja.list
-  notify:
-    - update cache
+  register: add_apt_repo
+
+- name: install packages
+  become: yes
+  apt:
+    name: ubuntu-defaults-ja
+    state: present
+    update_cache: "{{ change_apt_repo|changed or add_apt_repo|changed }}"
