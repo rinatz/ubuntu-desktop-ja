@@ -80,10 +80,10 @@ Playbook や role を編集してください。
 
 - タイムゾーンを `Asia/Tokyo` に設定
 - Ubuntu のパッケージアーカイブミラーを日本国内に変更
+- Ubuntu Japanese Team 推奨パッケージをインストール
 
 #### develop
 
-- Ubuntu Japanese Team 推奨パッケージをインストール
 - 開発でよく使用されるライブラリと docker をインストール
 
 #### extra
