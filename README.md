@@ -4,17 +4,17 @@ Ubuntu 14.04 の日本語デスクトップ環境を作るための Vagrantfile 
 
 ## 目次
 
-* [必要なもの](#必要なもの)
-* [設定](#設定)
-* [使い方](#使い方)
-* [日本語化](#日本語化)
-* [日本語入力](#日本語入力)
-* [ライセンス](#ライセンス)
+- [必要なもの](#必要なもの)
+- [設定](#設定)
+- [使い方](#使い方)
+- [日本語化](#日本語化)
+- [日本語入力](#日本語入力)
+- [ライセンス](#ライセンス)
 
 ## 必要なもの
 
-* [Vagrant]
-* [VirtualBox]
+- [Vagrant]
+- [VirtualBox]
 
 [Vagrant]: https://www.vagrantup.com/
 [VirtualBox]: https://www.virtualbox.org/
@@ -55,7 +55,7 @@ config.vm.network "private_network", type: "dhcp"
 ```ruby
 config.vm.provider "virtualbox" do |vb|
   # Display the VirtualBox GUI when booting the machine
-  # vb.gui = true
+  vb.gui = true
 
   # Customize the amount of memory on the VM:
   vb.memory = "4096"
@@ -78,23 +78,21 @@ Playbook や role を編集してください。
 
 #### bootstrap
 
-Ubuntu Japanese Team が推奨するパッケージをインストールします。
-その他下記の変更を行っています。
-
-* タイムゾーンを `Asia/Tokyo` に設定
-* 起動時に `System program problem detected` というダイアログが出ないようにする（初回起動時は出てしまう）
+- タイムゾーンを `Asia/Tokyo` に設定
+- Ubuntu のパッケージアーカイブミラーを日本国内に変更
 
 #### develop
 
-開発でよく使用されるライブラリと docker をインストールします。
+- Ubuntu Japanese Team 推奨パッケージをインストール
+- 開発でよく使用されるライブラリと docker をインストール
 
 #### extra
 
-`develop` でインストールされるパッケージに加えて各種言語のライブラリなどをインストールします。
+- 各種言語のライブラリをインストール
 
 #### ide
 
-Eclipse などの IDE をインストールします。
+- IDE をインストール
 
 ## 使い方
 
@@ -106,18 +104,13 @@ Eclipse などの IDE をインストールします。
 
 ## 日本語化
 
-Ubuntu が起動したら右上の歯車のアイコンから
+デスクトップ環境を日本語化するには次のようにします。
 
-`System settings...` > `Language Support`
-
-とたどります。ダイアログが表示されるので `install` を選択し
-言語パッケージをインストールします。
-パスワードを聞かれるので `vagrant` と入力します。
-
-`Language` タブで `日本語` をドラッグして一番上に持って行き、 `Apply System-Wide` ボタンを押します。
-`Regional Formats` でも `日本語` を選択し、 `Apply System-Wide` ボタンを押します。
-
-再ログインすれば日本語化されます。
+1. デスクトップ右上の歯車のアイコンから `System settings...` > `Language Support` を選択
+1. 表示されるダイアログで `install` を選択（パスワードは `vagrant`）
+1. `Language` タブで `日本語` を一番上までドラッグし `Apply System-Wide` ボタンを押す
+1. `Regional Formats` で `日本語` を選択し `Apply System-Wide` ボタンを押す
+1. 再ログイン
 
 ## 日本語入力
 
