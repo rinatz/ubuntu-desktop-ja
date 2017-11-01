@@ -19,11 +19,11 @@ Ubuntu 14.04 の日本語デスクトップ環境を作るための Vagrantfile 
 [Vagrant]: https://www.vagrantup.com/
 [VirtualBox]: https://www.virtualbox.org/
 
-### 注意
+    注意
 
-動作確認は Vagrant 2.0.0 と VirtualBox 5.1.28 で行っています。
-バージョンの組み合わせがシビアで、
-相性が悪いと上手く起動できないことがあるためご注意下さい。
+    動作確認は Vagrant 2.0.0 と VirtualBox 5.1.28 で行っています。
+    バージョンの組み合わせがシビアで、
+    相性が悪いと上手く起動できないことがあるためご注意下さい。
 
 ## 設定
 
