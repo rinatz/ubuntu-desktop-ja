@@ -2,3 +2,5 @@
 
 - name: install dlang
   shell: curl -fsS https://dlang.org/install.sh | bash -s dmd
+  args:
+    warn: no
