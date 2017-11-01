@@ -6,7 +6,7 @@ Ubuntu 14.04 の日本語デスクトップ環境を作るための Vagrantfile 
 
 - [必要なもの](#必要なもの)
 - [設定](#設定)
-- [使い方](#使い方)
+- [起動](#起動)
 - [日本語化](#日本語化)
 - [日本語入力](#日本語入力)
 - [ライセンス](#ライセンス)
@@ -36,65 +36,7 @@ Ubuntu 14.04 の日本語デスクトップ環境を作るための Vagrantfile 
 必要に応じて `Vagrantfile` を編集します。
 デフォルトのままでいい場合は何もしてくていいです。
 
-### プライベートネットワーク
-
-プライベートネットワークとして IP アドレスを DHCP で割り当てています。
-固定 IP アドレスにしたい場合は `Vagrantfile` の
-
-```ruby
-config.vm.network "private_network", type: "dhcp"
-```
-
-の箇所を変更してください。
-
-### CPU・メモリ
-
-メモリは 4096 MB 割り当てています。また CPU は 2 つに設定しています。
-変更したい場合は `Vagrantfile` の
-
-```ruby
-config.vm.provider "virtualbox" do |vb|
-  # Display the VirtualBox GUI when booting the machine
-  vb.gui = true
-
-  # Customize the amount of memory on the VM:
-  vb.memory = "4096"
-
-  vb.cpus = 2
-```
-
-の `vb.memory, vb.cpus` を適宜変更してください。
-
-### インストールパッケージ
-
-プロビジョニング時に下記の Playbook を [Ansible] で実行するようにしています。
-[Ansible] をあらかじめインストールしておく必要はありません。
-
-インストールするパッケージの詳細は [ansible](./ansible) ディレクトリ配下を見てください。
-インストールが不要のライブラリがあれば、好みに合わせて使用する
-Playbook や role を編集してください。
-
-[Ansible]: https://www.ansible.com/
-
-#### bootstrap
-
-- タイムゾーンを `Asia/Tokyo` に設定
-- Ubuntu のパッケージアーカイブミラーを日本国内に変更
-- Ubuntu Japanese Team 推奨パッケージをインストール
-
-#### develop
-
-- 開発でよく使用されるライブラリと docker をインストール
-
-#### extra
-
-- 各種言語のライブラリをインストール
-
-#### ide
-
-- IDE をインストール
-
-## 使い方
+## 起動
 
 `Vagrantfile` の置かれたところ（ここでは `$HOME` としています）で
 `vagrant up` と打てばプロビジョニングが始まります。
