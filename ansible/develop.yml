@@ -4,6 +4,7 @@
   roles:
     - scm
     - buildpack
+    - bash-completion
     - docker
     - docker-compose
     - nvm
