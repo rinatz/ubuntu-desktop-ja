@@ -44,6 +44,10 @@ Ubuntu 14.04 の日本語デスクトップ環境を作るための Vagrantfile 
     $ cd $HOME
     $ vagrant up
 
+プロビジョニングが終わったら再起動して下さい。
+
+    $ vagrant reload
+
 ## 日本語化
 
 デスクトップ環境を日本語化するには次のようにします。
