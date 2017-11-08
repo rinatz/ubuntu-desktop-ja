@@ -1,0 +1,9 @@
+---
+
+- name: enable ptrace
+  become: yes
+  lineinfile:
+    path: /etc/sysctl.d/10-ptrace.conf
+    regexp: '^(kernel.yama.ptrace_scope)\s+=\s+\d+'
+    line: '\1 = 0'
+    backrefs: yes

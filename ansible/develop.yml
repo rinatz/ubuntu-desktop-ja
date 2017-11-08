@@ -7,10 +7,11 @@
     - bash-completion
     - docker
     - docker-compose
-    - nvm
-    - stow
     - dotfiles
     - fonts
+    - nvm
+    - ptrace
     - pyenv
     - python-dev
     - rbenv
+    - stow
