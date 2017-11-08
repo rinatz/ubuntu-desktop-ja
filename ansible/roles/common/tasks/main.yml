@@ -13,8 +13,8 @@
   become: yes
   replace:
     dest: /etc/apt/sources.list
-    regexp: 'http://archive.ubuntu.com/ubuntu/'
-    replace: 'http://ftp.yz.yamagata-u.ac.jp/pub/linux/ubuntu/archives/'
+    regexp: 'http://archive.ubuntu.com/ubuntu'
+    replace: 'http://ftp.yz.yamagata-u.ac.jp/pub/linux/ubuntu/archives'
   register: change_apt_repo
 
 - name: add apt key
