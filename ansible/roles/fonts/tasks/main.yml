@@ -1,9 +1,12 @@
 ---
 
-- name: install inconsolata
+- name: install fonts
   become: yes
   apt:
-    name: fonts-inconsolata
+    name: "{{ item }}"
     state: present
     update_cache: yes
     cache_valid_time: 3600
+  with_items:
+    - fonts-inconsolata
+    - fonts-noto-cjk
