@@ -1,6 +1,6 @@
 # 注意
 
-> このリポジトリは下記へ移動しました。
+> このリポジトリは移動しました。
 > https://github.com/rinatz/linux-desktop-ja
 
 # ubuntu-desktop-ja
