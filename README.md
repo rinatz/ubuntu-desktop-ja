@@ -1,3 +1,8 @@
+# 注意
+
+> このリポジトリは下記へ移動しました。
+> https://github.com/rinatz/linux-desktop-ja
+
 # ubuntu-desktop-ja
 
 Ubuntu 14.04 の日本語デスクトップ環境を作るための Vagrantfile です。
